@@ -1,8 +1,12 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#define STATE_RUNNING 0
-#define STATE_ENDED 1
+#define LOGIC_TIME_STEP 1.0f/60.0f
+
+typedef enum {
+    RUNNING,
+    ENDED
+} EngineState;
 
 void engine_start();
 void set_state(int newState);
