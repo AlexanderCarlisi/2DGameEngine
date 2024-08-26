@@ -1,3 +1,5 @@
+#include "engine.h"
+
 
 #ifdef _WIN32
 // Windows-specific main
@@ -59,6 +61,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     while (GetMessage(&msg, NULL, 0, 0)) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
+
+        engine_start();
     }
 
     return 0;
