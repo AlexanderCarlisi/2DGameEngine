@@ -8,8 +8,13 @@ typedef enum {
     ENDED
 } EngineState;
 
+// Initialize the engine
 void engine_start();
-void set_state(int newState);
-// int get_state();
+
+// Update GameLogic, Physics, and Renderer
+void engine_tick();
+
+// Set the state of the engine | RUNNING or ENDED
+void set_engine_state(EngineState newState);
 
 #endif
