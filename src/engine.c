@@ -36,3 +36,11 @@ void engine_tick() {
 void set_engine_state(EngineState newState) {
     current_state = newState;
 }
+
+void engine_close() {
+    // Clear Resources
+}
+
+EngineState get_engine_state() {
+    return current_state;
+}

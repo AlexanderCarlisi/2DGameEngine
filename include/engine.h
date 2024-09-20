@@ -17,4 +17,10 @@ void engine_tick();
 // Set the state of the engine | RUNNING or ENDED
 void set_engine_state(EngineState newState);
 
+// Closes the Engine, cleaning up resources | Call on Exit
+void engine_close();
+
+// Returns current state of the engine
+EngineState get_engine_state();
+
 #endif
