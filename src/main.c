@@ -1,10 +1,10 @@
 #include "engine.h"
-
+#include "time.h"
 
 #ifdef _WIN32
-// Windows-specific main
 
 #include <windows.h>
+#include "windows_renderer.h"
 
 
 // Handles Windows Events
@@ -24,7 +24,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
     // Create a Window Class
-    const char CLASS_NAME[] = "Sample Window Class";
+    const char CLASS_NAME[] = "Window Class";
 
     WNDCLASS wc = { };
 
@@ -38,7 +38,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     HWND hwnd = CreateWindowEx(
         0,                      // Optional Window Stypes
         CLASS_NAME,             // Window Class Name
-        "Sample Window",        // Window Title
+        "2D Game Engine",        // Window Title
         WS_OVERLAPPEDWINDOW,    // Window Style
 
         // Position and size of Window
@@ -50,12 +50,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         NULL        // Additional App Data
     );
 
-    if (hwnd == NULL) { // Why is this needed? seems redundent
+    if (hwnd == NULL) { // if the window handle doesn't exist, exit the program.
         return 0;
     }
 
     ShowWindow(hwnd, nCmdShow);
-    engine_start();
+
+    initialize_time_frequency(); // Initialize WinOS Timer Frequency
+    engine_start(create_windows_renderer(&hwnd, 800, 600));
 
     // Run the Message loop
     MSG msg = { };
@@ -64,7 +66,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         DispatchMessage(&msg);
         engine_tick();
 
-        if (get_engine_state() == EngineState.ENDED)
+        if (get_engine_state() == ENDED)
             break;
     }
 

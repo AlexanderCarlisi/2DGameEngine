@@ -1,3 +1,5 @@
+#include "render.h"
+
 #ifndef ENGINE_H
 #define ENGINE_H
 
@@ -9,7 +11,7 @@ typedef enum {
 } EngineState;
 
 // Initialize the engine
-void engine_start();
+void engine_start(struct Renderer*);
 
 // Update GameLogic, Physics, and Renderer
 void engine_tick();
