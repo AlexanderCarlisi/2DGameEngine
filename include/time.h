@@ -16,6 +16,6 @@ float get_psoix_time();
 #endif  // _WIN32
 
 
-float (*get_current_time) (void);
+extern float (*get_current_time) (void);
 
 #endif // TIME_H
