@@ -1,9 +1,13 @@
+//
+// 2D Game Engine main class.
+// Engine.tick() is the main loop of the program, it's encapsulated by OS code.
+// When creating your own game using this Engine, you should be interfacing with this class to make changes.
+//
 #include "render.h"
+#include "world.h"
 
 #ifndef ENGINE_H
 #define ENGINE_H
-
-#define LOGIC_TIME_STEP 1.0f/60.0f
 
 typedef enum {
     RUNNING,
@@ -24,5 +28,9 @@ void engine_close();
 
 // Returns current state of the engine
 EngineState get_engine_state();
+
+// Returns a pointer to the world structure
+struct World* get_world_ptr();
+
 
 #endif

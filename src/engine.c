@@ -2,12 +2,14 @@
 #include "engine.h"
 #include "time.h"
 #include "render.h"
+#include "world.h"
 
 static EngineState current_state = ENDED;
 static const float FIXED_TIME_STEP = 1.0f / 60.0f;
 static float accumulator = 0.0f;
 static float lastTime = 0.0f;
 static Renderer* renderer;
+static World world;
 
 void engine_start(struct Renderer* render) {
     current_state = RUNNING;
@@ -43,4 +45,8 @@ void engine_close() {
 
 EngineState get_engine_state() {
     return current_state;
+}
+
+struct World* get_world_ptr() {
+    return &world;
 }
