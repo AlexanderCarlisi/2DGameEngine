@@ -24,9 +24,22 @@ void win_renderer_clear(struct Renderer* self, uint32_t color) {
     memset(self->framebuffer, color, self->width * self->height * sizeof(uint32_t));
 }
 
+void win_renderer_draw(struct Renderer* self, float alpha) { // TODO: Add parameter for Game Objects to render them
+    // For game object
+    // Check if previous position is different from current Position
+    // If different interpolate position
+    // else draw normally
+}
+
 void win_renderer_draw_pixel(struct Renderer* self, int x, int y, uint32_t color) {
     if (x < 0 || x >= self->width || y < 0 || y >= self->height) return;
     self->framebuffer[y * self->width + x] = color;
+}
+
+void win_renderer_interpolate_pixel(struct Renderer* self, int x0, int y0, int x1, int y1, uint32_t color, float alpha) {
+    int x = (int) ((x1 - x0) * alpha);
+    int y = (int) ((y1 - y0) * alpha);
+    win_renderer_draw_pixel(self, x, y, color);
 }
 
 void win_renderer_draw_shape(struct Renderer* self, int x, int y, uint32_t color, int vertices) {
@@ -72,7 +85,9 @@ Renderer* create_windows_renderer(HWND* hwnd, int width, int height) {
 
     renderer->base.init = win_renderer_init;
     renderer->base.clear = win_renderer_clear;
+    renderer->base.draw = win_renderer_draw;
     renderer->base.draw_pixel = win_renderer_draw_pixel;
+    renderer->base.interpolate_pixel = win_renderer_interpolate_pixel;
     renderer->base.draw_shape = win_renderer_draw_shape;
     renderer->base.display = win_renderer_display;
     renderer->base.release_resources = win_renderer_release_resources;

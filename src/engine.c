@@ -29,7 +29,7 @@ void engine_tick() {
 
     // Variable Update
     float alpha = accumulator / FIXED_TIME_STEP;
-    // render->alpha
+    renderer->draw(renderer, alpha); // Pass GameObjects into this
 }
 
 void set_engine_state(EngineState newState) {
