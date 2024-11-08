@@ -1,3 +1,5 @@
+// gcc src/main.c src/engine.c src/time.c src/windows_renderer.c -Iinclude -o 2DGameEngine -lgdi32
+
 #include "engine.h"
 #include "time.h"
 
