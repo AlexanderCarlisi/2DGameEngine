@@ -25,7 +25,7 @@ void engine_tick() {
     // Fixed Update
     while (accumulator >= FIXED_TIME_STEP) {
         // Update Game Logic
-        // Update Physics
+        // world_update_physics(&world)
         accumulator -= FIXED_TIME_STEP;
     }
 
