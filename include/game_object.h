@@ -30,10 +30,10 @@ typedef enum ObjectType {
 typedef struct GameObject {
     ObjectType objectType;
     Pose pose;
+    Pose previousPose;
     float friction;
     uint32_t color;
     int shapeVerticies;
-
 
 } GameObject;
 
@@ -54,6 +54,9 @@ void update_pose_meters(World* world, Pose* pose, int xMeters, int yMeters);
 
 // Updates the provided Pose tot he provided Pixels, handles the conversion of Meter values using the World settings.
 void update_pose_pixels(World* world, Pose* pose, int xPixels, int yPixels);
+
+// Checks if two poses are equal in Meter Positions. Returns 1 if they are, 0 if they are not.
+int pose_equals(Pose* pose1, Pose* pose2);
 
 
 // Size is complicated because it relates to shapes, there will need to be some kind of Definition for Shapes,
