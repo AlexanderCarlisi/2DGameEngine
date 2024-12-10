@@ -25,13 +25,13 @@ void engine_tick() {
     // Fixed Update
     while (accumulator >= FIXED_TIME_STEP) {
         // Update Game Logic
-        // world_update_physics(&world)
+        world_update_physics(&world)
         accumulator -= FIXED_TIME_STEP;
     }
 
     // Variable Update
     float alpha = accumulator / FIXED_TIME_STEP;
-    renderer->draw(renderer, alpha); // Pass GameObjects into this
+    renderer->draw(renderer, alpha, world.objects);
 }
 
 void set_engine_state(EngineState newState) {

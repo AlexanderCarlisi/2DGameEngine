@@ -1,6 +1,7 @@
 #ifdef _WIN32
 
 #include "windows_renderer.h"
+#include "game_object.h"
 #include <windows.h>
 
 void win_renderer_init(struct Renderer* self) {
@@ -24,11 +25,15 @@ void win_renderer_clear(struct Renderer* self, uint32_t color) {
     memset(self->framebuffer, color, self->width * self->height * sizeof(uint32_t));
 }
 
-void win_renderer_draw(struct Renderer* self, float alpha) { // TODO: Add parameter for Game Objects to render them
-    // For game object
-    // Check if previous position is different from current Position
-    // If different interpolate position
-    // else draw normally
+void win_renderer_draw(struct Renderer* self, float alpha, struct GameObject* objects) {
+    for (int i = 0; i < 1; i++) {
+        GameObject obj = objects[i];
+        if (!pose_equals(&obj.pose, &obj.previousPose)) {
+            win_renderer_interpolate_pixel(self, obj.previousPose.xPixels, obj.previousPose.yPixels, obj.pose.xPixels, obj.pose.yPixels, obj.color, alpha);
+        } else {
+            win_renderer_draw_pixel(self, obj.pose.xPixels, obj.pose.yPixels, obj.color);
+        }
+    }
 }
 
 void win_renderer_draw_pixel(struct Renderer* self, int x, int y, uint32_t color) {
