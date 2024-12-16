@@ -20,11 +20,14 @@ typedef struct World {
     
     float pixelsPerMeter; // 10 px/m default. Used in pose conversion functions.
     float g; // g, gravity field. 9.8 N/Kg | m/s/s default.
+
+    int* screenWidthPx;
+    int* screenHeightPx;
 } World;
 
 
 // Initializes the World
-int world_init(struct World* self);
+int world_init(struct World* self, int* screenWidthPtr, int* screenHeightPtr);
 
 // Add a GameObject to the world-> objects dynamic array, handles errors.
 int world_insert_object(struct World* self, struct GameObject* objectptr);

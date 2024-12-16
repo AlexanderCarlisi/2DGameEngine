@@ -4,9 +4,11 @@
 #include "stdlib.h"
 
 
-int world_init(struct World* self) {
+int world_init(struct World* self, int* screenWidthPtr, int* screenHeightPtr) {
     self->pixelsPerMeter = 10;
     self->g = 9.8;
+    self->screenWidthPx = screenWidthPtr;
+    self->screenHeightPx = screenHeightPtr;
 
     // Initialize GameObject Dynamic Array
     self->reallocationRatio = 1.5;

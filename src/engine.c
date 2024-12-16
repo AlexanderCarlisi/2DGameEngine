@@ -17,7 +17,7 @@ void engine_start(struct Renderer* render) {
     renderer = render;
     renderer->init(renderer);
 
-    if (world_init(&world) == 0) {
+    if (world_init(&world, &renderer->width, &renderer->height) == 0) {
         printf("\nengine_start(): World Init failure. \n");
         return;
     }
@@ -41,8 +41,8 @@ void engine_tick() {
 
     // Variable Update
     float alpha = accumulator / FIXED_TIME_STEP;
-    renderer->clear(renderer, rgba(0, 255, 100, 200));
-    // renderer->draw(renderer, alpha, &world.objects);
+    renderer->clear(renderer, rgba(255, 255, 0, 255));
+    renderer->draw(renderer, alpha, &world.objects);
     renderer->display(renderer);
     // printf("Engine Tick\n");
 }
