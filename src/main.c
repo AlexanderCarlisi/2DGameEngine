@@ -1,7 +1,8 @@
-// gcc src/main.c src/engine.c src/time.c src/windows_renderer.c -Iinclude -o 2DGameEngine -lgdi32
+// gcc src/*.c -Iinclude -o 2DGameEngine -lgdi32
 
 #include "engine.h"
 #include "time.h"
+#include <stdio.h>
 
 #ifdef _WIN32
 
@@ -11,11 +12,17 @@
 
 // Handles Windows Events
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-    switch(uMsg) {
+    switch (uMsg) {
+        case WM_CLOSE:
+            // Destroy the window and post a quit message
+            DestroyWindow(hwnd);
+            return 0;
+
         case WM_DESTROY:
+            // Post a quit message to exit the message loop
             PostQuitMessage(0);
             return 0;
-        
+
         default:
             return DefWindowProc(hwnd, uMsg, wParam, lParam);
     }
@@ -44,7 +51,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         WS_OVERLAPPEDWINDOW,    // Window Style
 
         // Position and size of Window
-        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+        CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720,
 
         NULL,       // Parent Window
         NULL,       // Menu
@@ -53,27 +60,38 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     );
 
     if (hwnd == NULL) { // if the window handle doesn't exist, exit the program.
+        printf("HWND is Null... exiting\n");
         return 0;
     }
 
     ShowWindow(hwnd, nCmdShow);
 
     initialize_time_frequency(); // Initialize WinOS Timer Frequency
-    engine_start(create_windows_renderer(&hwnd, 800, 600));
+    engine_start(create_windows_renderer(&hwnd, 1280, 720));
+
+    printf("Initialized Window\n");
 
     // Run the Message loop
     MSG msg = { };
-    while (GetMessage(&msg, NULL, 0, 0)) {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
+    while (1) {
+        // Check for messages and process them
+        while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
+            if (msg.message == WM_QUIT || get_engine_state() == ENDED) {
+                engine_close();
+                return 0;
+            }
+
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+        }
+
         engine_tick();
 
-        if (get_engine_state() == ENDED)
-            break;
+        // Sleep or delay to limit CPU usage (optional)
+        Sleep(1); // ms
     }
 
     engine_close();
-
     return 0;
 }
 
