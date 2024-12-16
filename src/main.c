@@ -77,6 +77,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         // Check for messages and process them
         while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
             if (msg.message == WM_QUIT || get_engine_state() == ENDED) {
+                printf("...Closing Properly...\n");
                 engine_close();
                 return 0;
             }
