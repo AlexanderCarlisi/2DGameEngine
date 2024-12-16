@@ -15,27 +15,18 @@
 // DYNAMIC : Affected by Physics, gravity and collisions. Ofcourse you can change these behaviors.
 //
 
-#include "world.h"
-#include <stdint.h>
-
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
+
+// Includes
+#include <stdint.h>
+struct World; // WORLD_H
 
 
 typedef enum ObjectType {
     STATIC,
     DYNAMIC
 } ObjectType;
-
-typedef struct GameObject {
-    ObjectType objectType;
-    Pose pose;
-    Pose previousPose;
-    float friction;
-    uint32_t color;
-    int shapeVerticies;
-
-} GameObject;
 
 
 //
@@ -49,14 +40,25 @@ typedef struct Pose {
     int yPixels;
 } Pose;
 
+
+typedef struct GameObject {
+    ObjectType objectType;
+    Pose pose;
+    Pose previousPose;
+    float friction;
+    uint32_t color;
+    int worldIndex;
+
+} GameObject;
+
 // Updates the provided Pose to the provided Meters, handles the conversion for Pixel values using the World settings.
-void update_pose_meters(World* world, Pose* pose, int xMeters, int yMeters);
+void update_pose_meters(struct World* world, Pose* pose, int xMeters, int yMeters);
 
 // Updates the provided Pose tot he provided Pixels, handles the conversion of Meter values using the World settings.
-void update_pose_pixels(World* world, Pose* pose, int xPixels, int yPixels);
+void update_pose_pixels(struct World* world, Pose* pose, int xPixels, int yPixels);
 
 // Checks if two poses are equal in Meter Positions. Returns 1 if they are, 0 if they are not.
-int pose_equals(Pose* pose1, Pose* pose2);
+int pose_equals(struct Pose* pose1, struct Pose* pose2);
 
 
 // Size is complicated because it relates to shapes, there will need to be some kind of Definition for Shapes,

@@ -9,7 +9,7 @@ void win_renderer_init(struct Renderer* self) {
     renderer->hdc = GetDC(*renderer->hwnd);
 
     // init bitmap info
-    memset(&renderer->bitmapInfo, 0, sizeof(renderer->bitmapInfo));
+    memset(&renderer->bitmapInfo, 0, sizeof(BITMAPINFO));
     renderer->bitmapInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
     renderer->bitmapInfo.bmiHeader.biWidth = self->width;
     renderer->bitmapInfo.bmiHeader.biHeight = -self->height; // Top-down DIB
@@ -22,17 +22,16 @@ void win_renderer_init(struct Renderer* self) {
 }
 
 void win_renderer_clear(struct Renderer* self, uint32_t color) {
-    memset(self->framebuffer, color, self->width * self->height * sizeof(uint32_t));
-}
+    size_t size = self->width * self->height;
+    uint32_t* framebuffer = self->framebuffer;
 
-void win_renderer_draw(struct Renderer* self, float alpha, struct GameObject* objects) {
-    for (int i = 0; i < 1; i++) {
-        GameObject obj = objects[i];
-        if (!pose_equals(&obj.pose, &obj.previousPose)) {
-            win_renderer_interpolate_pixel(self, obj.previousPose.xPixels, obj.previousPose.yPixels, obj.pose.xPixels, obj.pose.yPixels, obj.color, alpha);
-        } else {
-            win_renderer_draw_pixel(self, obj.pose.xPixels, obj.pose.yPixels, obj.color);
-        }
+    // Fill a small buffer with the color, then copy it across the framebuffer
+    uint32_t buffer[8];
+    for (int i = 0; i < 8; i++) {
+        buffer[i] = color;
+    }
+    for (size_t i = 0; i < size; i += 8) {
+        memcpy(&framebuffer[i], buffer, sizeof(buffer));
     }
 }
 
@@ -49,6 +48,17 @@ void win_renderer_interpolate_pixel(struct Renderer* self, int x0, int y0, int x
 
 void win_renderer_draw_shape(struct Renderer* self, int x, int y, uint32_t color, int vertices) {
     // TODO
+}
+
+void win_renderer_draw(struct Renderer* self, float alpha, struct GameObject*** objects) {
+    for (int i = 0; i < 1; i++) {
+        GameObject obj = *(*objects)[i]; // objects is a pointer to a Dynamic Array of GameObject Pointers| >:)
+        if (!pose_equals(&obj.pose, &obj.previousPose)) {
+            win_renderer_interpolate_pixel(self, obj.previousPose.xPixels, obj.previousPose.yPixels, obj.pose.xPixels, obj.pose.yPixels, obj.color, alpha);
+        } else {
+            win_renderer_draw_pixel(self, obj.pose.xPixels, obj.pose.yPixels, obj.color);
+        }
+    }
 }
 
 void win_renderer_display(struct Renderer* self) {

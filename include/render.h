@@ -9,10 +9,10 @@
 typedef struct Renderer {
     void (*init)(struct Renderer* self);
     void (*clear)(struct Renderer* self, uint32_t color);
-    void (*draw)(struct Renderer* self, float alpha, struct GameObject* objects);
     void (*draw_pixel)(struct Renderer* self, int x, int y, uint32_t color);
     void (*interpolate_pixel)(struct Renderer* self, int x0, int y0, int x1, int y1, uint32_t color, float alpha);
     void (*draw_shape)(struct Renderer* self, int x, int y, uint32_t color, int vertices);
+    void (*draw)(struct Renderer* self, float alpha, struct GameObject*** objects);
     void (*display)(struct Renderer* self);
     void (*release_resources)(struct Renderer* self);
 
