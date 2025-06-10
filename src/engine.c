@@ -9,9 +9,10 @@
 static bool is_running = false;
 static const float FIXED_TIME_STEP = 1.0f / 60.0f;
 static float accumulator = 0.0f;
-static float lastTime = 0.0f;
+static float last_time = 0.0f;
 static Renderer* renderer;
 static World world;
+
 
 void engine_start(struct Renderer* render) {
     is_running = true;
@@ -26,11 +27,12 @@ void engine_start(struct Renderer* render) {
     printf("Engine Initialized\n");
 }
 
+
 void engine_tick() {
     // printf("Engine Tick\n");
     float currentTime = get_current_time();
-    float frameTime = currentTime - lastTime;
-    lastTime = currentTime;
+    float frameTime = currentTime - last_time;
+    last_time = currentTime;
     accumulator += frameTime;
 
     // Fixed Update
@@ -47,6 +49,7 @@ void engine_tick() {
     renderer->display(renderer);
     // printf("Engine Tick\n");
 }
+
 
 void engine_close() {
     // Clear Resources
