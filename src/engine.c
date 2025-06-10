@@ -4,8 +4,9 @@
 #include "render.h"
 #include "world.h"
 #include "color.h"
+#include "stdbool.h"
 
-static EngineState current_state = RUNNING;
+static bool is_running = false;
 static const float FIXED_TIME_STEP = 1.0f / 60.0f;
 static float accumulator = 0.0f;
 static float lastTime = 0.0f;
@@ -13,7 +14,7 @@ static Renderer* renderer;
 static World world;
 
 void engine_start(struct Renderer* render) {
-    current_state = RUNNING;
+    is_running = true;
     renderer = render;
     renderer->init(renderer);
 
@@ -42,7 +43,7 @@ void engine_tick() {
     // Variable Update
     float alpha = accumulator / FIXED_TIME_STEP;
     renderer->clear(renderer, rgba(255, 255, 0, 255));
-    renderer->draw(renderer, alpha, &world.objects);
+    renderer->draw(renderer, alpha, &world.objects, world.objectsCount);
     renderer->display(renderer);
     // printf("Engine Tick\n");
 }
@@ -54,12 +55,15 @@ void engine_close() {
 }
 
 
-void set_engine_state(EngineState newState) {
-    current_state = newState;
+void set_engine_state(bool isRunning) {
+    is_running = isRunning;
 }
-EngineState get_engine_state() {
-    return current_state;
+
+
+bool engine_is_running() {
+    return is_running;
 }
+
 
 struct World* get_world_ptr() {
     return &world;

@@ -50,15 +50,21 @@ void win_renderer_draw_shape(struct Renderer* self, int x, int y, uint32_t color
     // TODO
 }
 
-void win_renderer_draw(struct Renderer* self, float alpha, struct GameObject*** objects) {
-    for (int i = 0; i < 1; i++) {
-        GameObject obj = *(*objects)[i]; // objects is a pointer to a Dynamic Array of GameObject Pointers| >:)
+void win_renderer_draw(struct Renderer* self, float alpha, struct GameObject*** objects, int amountOfGameObjects) {
+    // Drawing objects as singular pixels
+    for (int i = 0; i < amountOfGameObjects; i++) {
+        GameObject obj = *(*objects)[i]; // objects is a pointer to a Dynamic Array of GameObject Pointers | ;)
         if (!pose_equals(&obj.pose, &obj.previousPose)) {
             win_renderer_interpolate_pixel(self, obj.previousPose.xPixels, obj.previousPose.yPixels, obj.pose.xPixels, obj.pose.yPixels, obj.color, alpha);
         } else {
             win_renderer_draw_pixel(self, obj.pose.xPixels, obj.pose.yPixels, obj.color);
         }
     }
+
+    // Drawing objects as Shapes
+    // for (int i = 0; i < amountOfGameObjects; i++) {
+        
+    // }
 }
 
 void win_renderer_display(struct Renderer* self) {

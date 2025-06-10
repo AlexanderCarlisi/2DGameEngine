@@ -5,14 +5,10 @@
 //
 #include "render.h"
 #include "world.h"
+#include "stdbool.h"
 
 #ifndef ENGINE_H
 #define ENGINE_H
-
-typedef enum {
-    RUNNING,
-    ENDED
-} EngineState;
 
 // Initialize the engine
 void engine_start(struct Renderer*);
@@ -21,13 +17,13 @@ void engine_start(struct Renderer*);
 void engine_tick();
 
 // Set the state of the engine | RUNNING or ENDED
-void set_engine_state(EngineState newState);
+void set_engine_state(bool isRunning);
 
 // Closes the Engine, cleaning up resources | Call on Exit
 void engine_close();
 
 // Returns current state of the engine
-EngineState get_engine_state();
+bool engine_is_running();
 
 // Returns a pointer to the world structure
 struct World* get_world_ptr();

@@ -76,7 +76,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     while (1) {
         // Check for messages and process them
         while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-            if (msg.message == WM_QUIT || get_engine_state() == ENDED) {
+            if (msg.message == WM_QUIT || !engine_is_running()) {
                 printf("...Closing Properly...\n");
                 engine_close();
                 return 0;
@@ -88,7 +88,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
         engine_tick();
 
-        // Sleep or delay to limit CPU usage (optional)
+        // TODO: Work on this, for Framerates and what not
         Sleep(1); // ms
     }
 

@@ -20,6 +20,9 @@
 
 // Includes
 #include <stdint.h>
+#include "pose.h"
+#include "shape.h"
+
 struct World; // WORLD_H
 
 
@@ -29,59 +32,19 @@ typedef enum ObjectType {
 } ObjectType;
 
 
-//
-// When updating a Pose structs values, it's recommended to use the provided functions, as it will update the other values. 
-// (eg. if you update the Meters position using the function, it will update the Pixel positions using the proper conversion)
-//
-typedef struct Pose {
-    int xMeters;
-    int yMeters;
-    int xPixels;
-    int yPixels;
-} Pose;
-
-
 typedef struct GameObject {
     ObjectType objectType;
     Pose pose;
     Pose previousPose;
-    float friction;
+    float rotation;
     uint32_t color;
+    Shape shape;
     int worldIndex;
 
 } GameObject;
 
-// Updates the provided Pose to the provided Meters, handles the conversion for Pixel values using the World settings.
-void update_pose_meters(struct World* world, Pose* pose, int xMeters, int yMeters);
 
-// Updates the provided Pose tot he provided Pixels, handles the conversion of Meter values using the World settings.
-void update_pose_pixels(struct World* world, Pose* pose, int xPixels, int yPixels);
-
-// Checks if two poses are equal in Meter Positions. Returns 1 if they are, 0 if they are not.
-int pose_equals(struct Pose* pose1, struct Pose* pose2);
-
-
-// Size is complicated because it relates to shapes, there will need to be some kind of Definition for Shapes,
-// since it'll be easy to render them, but hard to calculate physics with them.
-// I've decided that forcing all collision boxes to be rectangles would be too limiting to the users.
-// //
-// // When updating a Size structs values, it's recommended to use the provided functions, as it will update the other values.
-// // (eg. if you update the meters size using the function, it will update the pixel sizes using the proper conversion)
-// //
-// // X and Y here mean how far they extend Horizontally and Vertically.
-// //
-// typedef struct Size {
-//     int xMeters;
-//     int yMeters;
-//     int xPixels;
-//     int yPixels;
-// } Size;
-
-// // Updates the provided Size to the provided Meters, handles the conversion for Pixel values using the World settings.
-// void update_size_meters(World* world, Size* size, int xMeters, int yMeters);
-
-// // Updates the provided Size tot he provided Pixels, handles the conversion of Meter values using the World settings.
-// void update_size_pixels(World* world, Size* size, int xPixels, int yPixels);
+void initialize_gameobject(struct GameObject* obj, enum ObjectType objType, uint32_t color);
 
 
 #endif // GAME_OBJECT_H

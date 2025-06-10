@@ -2,6 +2,9 @@
 #include "game_object.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include "color.h"
+#include "pose.h"
+#include "shape.h"
 
 
 int world_init(struct World* self, int* screenWidthPtr, int* screenHeightPtr) {
@@ -24,7 +27,14 @@ int world_init(struct World* self, int* screenWidthPtr, int* screenHeightPtr) {
         printf(">>> world_init(): GameObject Allocation Failure");
         return 0;
     }
-    
+
+    // Test Code
+    GameObject* testObj = self->objects[0];
+    testObj->color = rgba(0, 0, 255, 255);
+    // create_shape_square(self, &testObj->shape);
+    update_pose_pixels(self, &testObj->pose, *self->screenWidthPx / 2, *self->screenHeightPx / 2);
+    update_pose_pixels(self, &testObj->previousPose, *self->screenWidthPx / 2, *self->screenHeightPx / 2);
+
     return 1;
 }
 
@@ -40,10 +50,6 @@ int world_insert_object(struct World* self, struct GameObject* objectptr) {
     objectptr->worldIndex = self->objectsCount - 1;
     self->objects[objectptr->worldIndex] = objectptr;
     return 1;
-}
-
-void world_update_physics(struct World* self) {
-    
 }
 
 int world_create_object(struct World* self, struct GameObject** objectptr) {
@@ -90,4 +96,8 @@ void world_deallocate(struct World* self) {
         free(self->objects[i]);
     }
     free(self->objects);
+}
+
+void world_update_physics(struct World* self) {
+    // TODO: THIS
 }
