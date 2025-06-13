@@ -46,7 +46,7 @@ void engine_tick() {
     // Variable Update
     float alpha = accumulator / FIXED_TIME_STEP;
     renderer->clear(renderer, rgba(255, 255, 0, 255));
-    renderer->draw(renderer, alpha, &world.objects, world.objectsCount);
+    renderer->draw(renderer, alpha, world.objects, world.objectsCount);
     renderer->display(renderer);
     // printf("Engine Tick\n");
 }
