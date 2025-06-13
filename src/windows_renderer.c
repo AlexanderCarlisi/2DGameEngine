@@ -3,26 +3,24 @@
 #include "windows_renderer.h"
 #include "game_object.h"
 #include <windows.h>
+#include "app_config.h"
 
 void win_renderer_init(struct Renderer* self) {
     WindowsRenderer* renderer = (WindowsRenderer*) self;
     renderer->hdc = GetDC(*renderer->hwnd);
-
-    // init bitmap info
     memset(&renderer->bitmapInfo, 0, sizeof(BITMAPINFO));
     renderer->bitmapInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-    renderer->bitmapInfo.bmiHeader.biWidth = self->width;
-    renderer->bitmapInfo.bmiHeader.biHeight = -self->height; // Top-down DIB
+    renderer->bitmapInfo.bmiHeader.biWidth = *self->res_width;
+    renderer->bitmapInfo.bmiHeader.biHeight = - *self->res_height; // Top-down DIB
     renderer->bitmapInfo.bmiHeader.biPlanes = 1;
     renderer->bitmapInfo.bmiHeader.biBitCount = 32;
     renderer->bitmapInfo.bmiHeader.biCompression = BI_RGB;
-
     renderer->bitmap = CreateDIBSection(renderer->hdc, &renderer->bitmapInfo, DIB_RGB_COLORS, (void**) &self->framebuffer, NULL, 0);
     SelectObject(renderer->hdc, renderer->bitmap);
 }
 
 void win_renderer_clear(struct Renderer* self, uint32_t color) {
-    size_t size = self->width * self->height;
+    size_t size = *self->res_width * *self->res_height; // ? fb ?
     uint32_t* framebuffer = self->framebuffer;
 
     // Fill a small buffer with the color, then copy it across the framebuffer
@@ -36,8 +34,8 @@ void win_renderer_clear(struct Renderer* self, uint32_t color) {
 }
 
 void win_renderer_draw_pixel(struct Renderer* self, int x, int y, uint32_t color) {
-    if (x < 0 || x >= self->width || y < 0 || y >= self->height) return;
-    self->framebuffer[y * self->width + x] = color;
+    if (x < 0 || x >= *self->res_width || y < 0 || y >= *self->res_height) return;
+    self->framebuffer[y * *self->res_width + x] = color;
 }
 
 void win_renderer_interpolate_pixel(struct Renderer* self, int x0, int y0, int x1, int y1, uint32_t color, float alpha) {
@@ -71,8 +69,8 @@ void win_renderer_display(struct Renderer* self) {
     WindowsRenderer* renderer = (WindowsRenderer*) self;
     StretchDIBits(
         renderer->hdc,
-        0, 0, self->width, self->height,
-        0, 0, self->width, self->height,
+        0, 0, *self->win_width, *self->win_height, // target on screen
+        0, 0, *self->res_width, *self->res_height, // source from framebuffer
         self->framebuffer,
         &renderer->bitmapInfo,
         DIB_RGB_COLORS,
@@ -100,9 +98,16 @@ void win_renderer_release_resources(struct Renderer* self) {
 Renderer* create_windows_renderer(HWND* hwnd, int width, int height) {
     WindowsRenderer* renderer = (WindowsRenderer*) malloc(sizeof(WindowsRenderer));
     memset(renderer, 0, sizeof(WindowsRenderer));
-    renderer->base.width = width;
-    renderer->base.height = height;
-    renderer->base.framebuffer = (uint32_t*) calloc(width * height, sizeof(uint32_t));
+
+    // This should be moved to the base render.h or .c? Since it will be the same for Windows and Unix
+    struct Aspect* windowSize = appconfig_get_window_size();
+    struct Aspect* resolution = appconfig_get_resolution();
+    renderer->base.win_width = &windowSize->width;
+    renderer->base.win_height = &windowSize->height;
+    renderer->base.res_width = &resolution->width;
+    renderer->base.res_height = &resolution->height;
+
+    renderer->base.framebuffer = (uint32_t*) calloc(*renderer->base.res_width * *renderer->base.res_height, sizeof(uint32_t));
 
     renderer->base.init = win_renderer_init;
     renderer->base.clear = win_renderer_clear;

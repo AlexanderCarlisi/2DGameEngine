@@ -5,6 +5,7 @@
 #include "world.h"
 #include "color.h"
 #include "stdbool.h"
+#include "app_config.h"
 
 static bool is_running = false;
 static const float FIXED_TIME_STEP = 1.0f / 60.0f;
@@ -19,7 +20,7 @@ void engine_start(struct Renderer* render) {
     renderer = render;
     renderer->init(renderer);
 
-    if (world_init(&world, &renderer->width, &renderer->height) == 0) {
+    if (world_init(&world) == 0) {
         printf("\nengine_start(): World Init failure. \n");
         return;
     }

@@ -17,7 +17,10 @@ typedef struct Renderer {
     void (*release_resources)(struct Renderer* self);
 
     uint32_t* framebuffer;
-    int width, height;
+    int* win_width;
+    int* win_height; 
+    int* res_width;
+    int* res_height;
 } Renderer;
 
 

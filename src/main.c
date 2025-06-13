@@ -1,4 +1,7 @@
 // gcc src/*.c -Iinclude -o 2DGameEngine -lgdi32
+// TODO: Rip out platform code, and place into own files.
+
+// TODO: Fix Screen Size not being a Single instance
 
 #include "engine.h"
 #include "time.h"
@@ -31,7 +34,6 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 
 // Main Function
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-
     // Create a Window Class
     const char CLASS_NAME[] = "Window Class";
 
@@ -47,10 +49,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     HWND hwnd = CreateWindowEx(
         0,                      // Optional Window Stypes
         CLASS_NAME,             // Window Class Name
-        "2D Game Engine",        // Window Title
+        "Demo",        // Window Title
         WS_OVERLAPPEDWINDOW,    // Window Style
 
         // Position and size of Window
+        // TODO: Variable screen sizes here
         CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720,
 
         NULL,       // Parent Window
