@@ -6,17 +6,11 @@
 #include "pose.h"
 #include "shape.h"
 #include "app_config.h" 
+#include "world_config.h"
 
 
 int world_init(struct World* self) {
-    struct Aspect* resolution = appconfig_get_resolution();
-
-    // TODO: World Config
-    self->pixelsPerMeter = 10;
-    self->g = 9.8;
-
     // Initialize GameObject Dynamic Array
-    self->reallocationRatio = 1.5;
     self->objectsCount = 1;
     self->objectsSize = 2;
     self->objects = (GameObject**) calloc(self->objectsSize, sizeof(GameObject*));
@@ -34,6 +28,7 @@ int world_init(struct World* self) {
     GameObject* testObj = self->objects[0];
     testObj->color = rgba(0, 0, 255, 255);
     // create_shape_square(self, &testObj->shape);
+    struct Aspect* resolution = appconfig_get_resolution();
     update_pose_pixels(&testObj->pose, resolution->width / 2, resolution->height / 2);
     update_pose_pixels(&testObj->previousPose, resolution->width / 2, resolution->height / 2);
 
@@ -95,8 +90,8 @@ int world_destroy_object(struct World* self, int worldIndex) {
     return 1;
 }
 
-int world_reallocate_objects(struct World* self) {    
-    self->objectsSize *= self->reallocationRatio;
+int world_reallocate_objects(struct World* self) { 
+    self->objectsSize *= *worldconfig_get_realloc_ptr();
     GameObject** reallocated = (GameObject**) realloc(self->objects, self->objectsSize * sizeof(GameObject));
     if (reallocated == NULL) {
         printf("\n>>> world_insert_object(): Objects Reallocation Failure <<<\n");
@@ -114,5 +109,5 @@ void world_deallocate(struct World* self) {
 }
 
 void world_update_physics(struct World* self) {
-    // TODO: THIS
+    // TODO: ALLIS BRUH
 }

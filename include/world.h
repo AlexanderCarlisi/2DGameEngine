@@ -11,10 +11,6 @@ typedef struct World {
     GameObject** objects; // Dynamic Array of Pointers to GameObjects.
     int objectsCount; // Amount of Objects present in Objects Array.
     int objectsSize; // Current Size of Objects Array.
-    float reallocationRatio; // ObjectsSize gets multiplied by this value when needed, or when reallocate is called.
-    
-    float pixelsPerMeter; // 10 px/m default. Used in pose conversion functions.
-    float g; // g, gravity field. 9.8 N/Kg | m/s/s default.
 } World;
 
 
