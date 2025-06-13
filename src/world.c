@@ -68,17 +68,30 @@ int world_create_object(struct World* self, struct GameObject** objectptr) {
 }
 
 int world_destroy_object(struct World* self, int worldIndex) {
-    if (worldIndex > self->objectsSize - 1 || worldIndex < 0) {
-        printf(">>> world_destory_object(): Index out of Bounds, you should be passing GameObject.worldIndex <<<");
+    if (worldIndex < 0 || worldIndex >= self->objectsCount) {
+        printf(">>> world_destroy_object(): Index out of Bounds <<<\n");
         return 0;
     }
 
+    // Object to remove
+    GameObject* target = self->objects[worldIndex];
+
+    // Object at the end of the list
+    int lastIndex = self->objectsCount - 1;
+    GameObject* lastObject = self->objects[lastIndex];
+
+    if (worldIndex != lastIndex) {
+        // Move the last object to the deleted slot
+        self->objects[worldIndex] = lastObject;
+        lastObject->worldIndex = worldIndex;
+    }
+
+    // Null out and decrement
+    self->objects[lastIndex] = NULL;
     self->objectsCount--;
-    GameObject* toSwap = self->objects[self->objectsCount];
-    self->objects[toSwap->worldIndex] = NULL;
-    self->objects[worldIndex] = toSwap;
-    toSwap->worldIndex = worldIndex;
-    free(self->objects[worldIndex]);
+
+    // Free the target object
+    free(target);
     return 1;
 }
 
