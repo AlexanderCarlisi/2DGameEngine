@@ -1,7 +1,11 @@
 // gcc src/*.c -Iinclude -o 2DGameEngine -lgdi32
-// TODO: Rip out platform code, and place into own files.
 
-// TODO: Fix Screen Size not being a Single instance
+// TODO: REFACTOR: Rip out platform code, and place into own files. Integrate AppConfig into that.
+// TODO: REFACTOR/ADDITION World Handler
+// TODO: ADDITION: GameObject Shapes
+// TODO: ADDITION: GameObject Textures
+// TODO: ADDITION: World Physics, Collisions, CollisionBoxes
+
 
 #include "engine.h"
 #include "time.h"
