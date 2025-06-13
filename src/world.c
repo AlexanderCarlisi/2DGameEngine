@@ -5,13 +5,15 @@
 #include "color.h"
 #include "pose.h"
 #include "shape.h"
+#include "app_config.h" 
 
 
-int world_init(struct World* self, int* screenWidthPtr, int* screenHeightPtr) {
+int world_init(struct World* self) {
+    struct Aspect* resolution = appconfig_get_resolution();
+
+    // TODO: World Config
     self->pixelsPerMeter = 10;
     self->g = 9.8;
-    self->screenWidthPx = screenWidthPtr;
-    self->screenHeightPx = screenHeightPtr;
 
     // Initialize GameObject Dynamic Array
     self->reallocationRatio = 1.5;
@@ -32,8 +34,8 @@ int world_init(struct World* self, int* screenWidthPtr, int* screenHeightPtr) {
     GameObject* testObj = self->objects[0];
     testObj->color = rgba(0, 0, 255, 255);
     // create_shape_square(self, &testObj->shape);
-    update_pose_pixels(self, &testObj->pose, *self->screenWidthPx / 2, *self->screenHeightPx / 2);
-    update_pose_pixels(self, &testObj->previousPose, *self->screenWidthPx / 2, *self->screenHeightPx / 2);
+    update_pose_pixels(&testObj->pose, resolution->width / 2, resolution->height / 2);
+    update_pose_pixels(&testObj->previousPose, resolution->width / 2, resolution->height / 2);
 
     return 1;
 }

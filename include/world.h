@@ -4,6 +4,9 @@
 #include "game_object.h"
 
 // World object, holds gameobjects, and whatever else I come up with
+// While you can have Multiple Worlds, only one World can be loaded at a time.
+// TODO: Create a Setup where World struct is used by a WorldHandler, each World will have a WorldConfig
+// TODO: setup framework in a way that the users can Store and Load Worlds, with their own Initialization Functions.
 typedef struct World {
     GameObject** objects; // Dynamic Array of Pointers to GameObjects.
     int objectsCount; // Amount of Objects present in Objects Array.
@@ -12,14 +15,11 @@ typedef struct World {
     
     float pixelsPerMeter; // 10 px/m default. Used in pose conversion functions.
     float g; // g, gravity field. 9.8 N/Kg | m/s/s default.
-
-    int* screenWidthPx;
-    int* screenHeightPx;
 } World;
 
 
 // Initializes the World
-int world_init(struct World* self, int* screenWidthPtr, int* screenHeightPtr);
+int world_init(struct World*);
 
 // Add a GameObject to the world-> objects dynamic array, handles errors.
 int world_insert_object(struct World* self, struct GameObject* objectptr);
