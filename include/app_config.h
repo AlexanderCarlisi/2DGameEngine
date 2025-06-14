@@ -35,4 +35,10 @@ struct Aspect* appconfig_get_resolution();
 void appconfig_set_resolution(struct Aspect aspect);
 void appconfig_set_resolution_px(int pxWidth, int pxHeight);
 
+// If the Platform has updated the window size, then don't tell the platform that it did so.
+void appconfig_platform_resized_window(struct Aspect aspect);
+
+// If the Platform has updated the window size, then don't tell the platform that it did so.
+void appconfig_platform_resized_window_px(int pxWidth, int pxHeight);
+
 #endif // APP_CONFIG_H

@@ -69,6 +69,13 @@ bool engine_is_running() {
 }
 
 
-struct World* get_world_ptr() {
+struct World* engine_get_world_ptr() {
     return &world;
+}
+
+// This might be considered some kind of Anti-Pattern, and refacting will be a pain the longer I want.
+// TODO: Look into better ways of Implementing the Renderer, so that I maybe don't need to do this, 
+// but I don't think its THAT big of a deal. idk, whatever is most optimal, is what will happen.
+struct Renderer* engine_get_renderer_ptr() {
+    return renderer;
 }

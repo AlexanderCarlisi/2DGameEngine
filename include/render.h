@@ -6,6 +6,8 @@
 #ifndef RENDER_H
 #define RENDER_H
 
+struct ApplicationConfig; // APP_CONFIG_H
+
 typedef struct Renderer {
     void (*init)(struct Renderer* self);
     void (*clear)(struct Renderer* self, uint32_t color);
@@ -15,6 +17,7 @@ typedef struct Renderer {
     void (*draw)(struct Renderer* self, float alpha, struct GameObject** objects, int amountOfGameObjects);
     void (*display)(struct Renderer* self);
     void (*release_resources)(struct Renderer* self);
+    void (*set_aspects)(struct Renderer* self);
 
     uint32_t* framebuffer;
     int* win_width;

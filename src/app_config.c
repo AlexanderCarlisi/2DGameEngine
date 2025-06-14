@@ -1,6 +1,9 @@
 #include "app_config.h"
 #include "stdint.h"
 #include <stdlib.h>
+#include "platform.h"
+#include "render.h"
+#include "engine.h"
 
 
 static struct ApplicationConfig application_config = {
@@ -10,13 +13,13 @@ static struct ApplicationConfig application_config = {
     .render_aspect = (struct Aspect){.width=1280, .height=720}
 };
 
-
 char* appconfig_get_name() {
     return application_config.window_name;
 }
 
 void appconfig_set_name(const char* name) {
     // TODO: safety, buffers, and what not
+    platform_name_window(name);
 }
 
 
@@ -26,11 +29,24 @@ struct Aspect* appconfig_get_window_size() {
 
 void appconfig_set_window_size(struct Aspect aspect) {
     application_config.window_aspect = aspect;
-    // Update platform
+    platform_resize_window(&application_config.window_aspect);
+    struct Renderer* renderer = engine_get_renderer_ptr();
+    renderer->set_aspects(renderer);
 }
 
 void appconfig_set_window_size_px(int pxWidth, int pxHeight) {
     appconfig_set_window_size((struct Aspect){.width=pxWidth, .height=pxHeight});
+}
+
+
+void appconfig_platform_resized_window(struct Aspect aspect) {
+    application_config.window_aspect = aspect;
+    struct Renderer* renderer = engine_get_renderer_ptr();
+    renderer->set_aspects(renderer);
+}
+
+void appconfig_platform_resized_window_px(int pxWidth, int pxHeight) {
+    appconfig_platform_resized_window((struct Aspect){.width=pxWidth, .height=pxHeight});
 }
 
 
@@ -40,6 +56,8 @@ struct Aspect* appconfig_get_resolution() {
 
 void appconfig_set_resolution(struct Aspect aspect) {
     application_config.render_aspect = aspect;
+    struct Renderer* renderer = engine_get_renderer_ptr();
+    renderer->set_aspects(renderer);
 }
 
 void appconfig_set_resolution_px(int pxWidth, int pxHeight) {

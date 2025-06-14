@@ -26,7 +26,9 @@ void engine_close();
 bool engine_is_running();
 
 // Returns a pointer to the world structure
-struct World* get_world_ptr();
+struct World* engine_get_world_ptr();
 
+// Returns a pointer to the Renderer
+struct Renderer* engine_get_renderer_ptr();
 
 #endif

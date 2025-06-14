@@ -32,6 +32,8 @@ int world_init(struct World* self) {
     update_pose_pixels(&testObj->pose, resolution->width / 2, resolution->height / 2);
     update_pose_pixels(&testObj->previousPose, resolution->width / 2, resolution->height / 2);
 
+    // Test window resizing
+
     return 1;
 }
 

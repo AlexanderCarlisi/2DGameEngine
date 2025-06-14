@@ -5,19 +5,6 @@
 #include <windows.h>
 #include "app_config.h"
 
-void win_renderer_init(struct Renderer* self) {
-    WindowsRenderer* renderer = (WindowsRenderer*) self;
-    renderer->hdc = GetDC(*renderer->hwnd);
-    memset(&renderer->bitmapInfo, 0, sizeof(BITMAPINFO));
-    renderer->bitmapInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-    renderer->bitmapInfo.bmiHeader.biWidth = *self->res_width;
-    renderer->bitmapInfo.bmiHeader.biHeight = - *self->res_height; // Top-down DIB
-    renderer->bitmapInfo.bmiHeader.biPlanes = 1;
-    renderer->bitmapInfo.bmiHeader.biBitCount = 32;
-    renderer->bitmapInfo.bmiHeader.biCompression = BI_RGB;
-    renderer->bitmap = CreateDIBSection(renderer->hdc, &renderer->bitmapInfo, DIB_RGB_COLORS, (void**) &self->framebuffer, NULL, 0);
-    SelectObject(renderer->hdc, renderer->bitmap);
-}
 
 void win_renderer_clear(struct Renderer* self, uint32_t color) {
     size_t size = *self->res_width * *self->res_height; // ? fb ?
@@ -95,7 +82,44 @@ void win_renderer_release_resources(struct Renderer* self) {
     free(renderer);
 }
 
-Renderer* create_windows_renderer(HWND* hwnd, int width, int height) {
+void win_renderer_set_aspects(struct Renderer* self) {
+    WindowsRenderer* renderer = (WindowsRenderer*) self;
+
+    if (renderer->bitmap) {
+        DeleteObject(renderer->bitmap);
+        renderer->bitmap = NULL;
+    }
+
+    self->framebuffer = NULL;
+
+    memset(&renderer->bitmapInfo, 0, sizeof(BITMAPINFO));
+    renderer->bitmapInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    renderer->bitmapInfo.bmiHeader.biWidth = *self->res_width;
+    renderer->bitmapInfo.bmiHeader.biHeight = - *self->res_height; // top-down DIB
+    renderer->bitmapInfo.bmiHeader.biPlanes = 1;
+    renderer->bitmapInfo.bmiHeader.biBitCount = 32;
+    renderer->bitmapInfo.bmiHeader.biCompression = BI_RGB;
+
+    renderer->bitmap = CreateDIBSection(
+        renderer->hdc,
+        &renderer->bitmapInfo,
+        DIB_RGB_COLORS,
+        (void**) &self->framebuffer,
+        NULL,
+        0
+    );
+
+    SelectObject(renderer->hdc, renderer->bitmap);
+}
+
+
+void win_renderer_init(struct Renderer* self) {
+    WindowsRenderer* renderer = (WindowsRenderer*) self;
+    renderer->hdc = GetDC(*renderer->hwnd);
+    win_renderer_set_aspects(self);
+}
+
+Renderer* create_windows_renderer(HWND* hwnd) {
     WindowsRenderer* renderer = (WindowsRenderer*) malloc(sizeof(WindowsRenderer));
     memset(renderer, 0, sizeof(WindowsRenderer));
 
@@ -117,6 +141,7 @@ Renderer* create_windows_renderer(HWND* hwnd, int width, int height) {
     renderer->base.draw_shape = win_renderer_draw_shape;
     renderer->base.display = win_renderer_display;
     renderer->base.release_resources = win_renderer_release_resources;
+    renderer->base.set_aspects = win_renderer_set_aspects;
 
     renderer->hwnd = hwnd;
 

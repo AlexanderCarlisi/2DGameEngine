@@ -26,7 +26,8 @@ void win_renderer_draw_shape(Renderer* self, int x, int y, uint32_t color, int v
 void win_renderer_draw(struct Renderer* self, float alpha, struct GameObject** objects, int amountOfGameObjects);
 void win_renderer_display(Renderer* self);
 void win_renderer_release_resources(Renderer* self);
-Renderer* create_windows_renderer(HWND* hwnd, int width, int height);
+void win_renderer_set_aspects(Renderer* self);
+Renderer* create_windows_renderer(HWND* hwnd);
 
 
 #endif // WINRENDERER_H
