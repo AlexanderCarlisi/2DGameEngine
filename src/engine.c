@@ -8,14 +8,15 @@
 #include "app_config.h"
 
 static bool is_running = false;
-static const float FIXED_TIME_STEP = 1.0f / 60.0f;
 static float accumulator = 0.0f;
 static float last_time = 0.0f;
 static Renderer* renderer;
 static World world;
+static float* fixed_timestep;
 
 
 void engine_start(struct Renderer* render) {
+    fixed_timestep = appconfig_get_fps();
     is_running = true;
     renderer = render;
     renderer->init(renderer);
@@ -37,14 +38,14 @@ void engine_tick() {
     accumulator += frameTime;
 
     // Fixed Update
-    while (accumulator >= FIXED_TIME_STEP) {
+    while (accumulator >= *fixed_timestep) {
         // Update Game Logic
         world_update_physics(&world);
-        accumulator -= FIXED_TIME_STEP;
+        accumulator -= *fixed_timestep;
     }
 
     // Variable Update
-    float alpha = accumulator / FIXED_TIME_STEP;
+    float alpha = accumulator / *fixed_timestep;
     renderer->clear(renderer, rgba(255, 255, 0, 255));
     renderer->draw(renderer, alpha, world.objects, world.objectsCount);
     renderer->display(renderer);

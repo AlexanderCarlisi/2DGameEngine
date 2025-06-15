@@ -19,7 +19,7 @@ typedef struct ApplicationConfig {
     char window_name[MAX_WINDOW_NAME_LENGTH];
     struct Aspect window_aspect;
     struct Aspect render_aspect;
-    int frames_per_second;
+    float frames_per_second;
 } ApplicationConfig;
 
 
@@ -31,6 +31,7 @@ struct ApplicationConfig* appconfig_get();
 char* appconfig_get_name();
 struct Aspect* appconfig_get_window_size();
 struct Aspect* appconfig_get_resolution();
+float* appconfig_get_fps();
 
 
 ///
@@ -53,6 +54,7 @@ void appconfig_set_window_size(struct Aspect aspect);
 void appconfig_set_window_size_px(int pxWidth, int pxHeight);
 void appconfig_set_resolution(struct Aspect aspect);
 void appconfig_set_resolution_px(int pxWidth, int pxHeight);
+
 
 /// @brief Call this in Main. Overwrites the default Configuration.
 /// @param config 

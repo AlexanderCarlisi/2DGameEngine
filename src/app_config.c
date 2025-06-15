@@ -9,7 +9,7 @@
 
 static struct ApplicationConfig application_config = {
     .window_name = "Unconfigured App Config!",
-    .frames_per_second = 24,
+    .frames_per_second = 1/24.0,
     .window_aspect = (struct Aspect){.width=480, .height=480},
     .render_aspect = (struct Aspect){.width=480, .height=480}
 };
@@ -74,4 +74,8 @@ void appconfig_set(struct ApplicationConfig* config) {
     appconfig_set_name(config->window_name);
     appconfig_set_window_size(config->window_aspect);
     appconfig_set_resolution(config->render_aspect);
+}
+
+float* appconfig_get_fps() {
+    return &application_config.frames_per_second;
 }

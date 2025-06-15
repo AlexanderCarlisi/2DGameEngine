@@ -11,7 +11,7 @@
 int main() {
     ApplicationConfig appConfig = {
         .window_name = "MyGame",
-        .frames_per_second = 60,
+        .frames_per_second = 1/60.0,
         .window_aspect = (Aspect) {.width=1280, .height=720},
         .render_aspect = (Aspect) {.width=1280, .height=720}
     };
