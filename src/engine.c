@@ -74,6 +74,10 @@ struct World* engine_get_world_ptr() {
 }
 
 
+void engine_update_renderer_aspects() {
+    renderer->set_aspects(renderer);
+}
+
 struct Renderer* engine_get_renderer_ptr() {
     return renderer;
 }

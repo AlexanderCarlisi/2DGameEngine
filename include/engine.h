@@ -28,6 +28,9 @@ bool engine_is_running();
 // Returns a pointer to the world structure
 struct World* engine_get_world_ptr();
 
+// Updates the WindowSize and Resolution in the Renderer
+void engine_update_renderer_aspects();
+
 // Returns a pointer to the Renderer
 struct Renderer* engine_get_renderer_ptr();
 
