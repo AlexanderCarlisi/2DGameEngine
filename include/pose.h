@@ -6,10 +6,10 @@
 struct World; // WORLD_H
 
 
-//
 // When updating a Pose structs values, it's recommended to use the provided functions, as it will update the other values. 
 // (eg. if you update the Meters position using the function, it will update the Pixel positions using the proper conversion)
-//
+// Layout: [float, float, int, int]
+// Size: 16 bytes
 typedef struct Pose {
     float xMeters;
     float yMeters;

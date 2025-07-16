@@ -4,11 +4,13 @@
 #include "stdlib.h"
 #include <stdio.h>
 
+// Layout: [ptr, size, size, float]
+// Size: 28(32), 16
 #define DECLARE_VECTOR(vector_name, func_prefix, type)\
     typedef struct vector_name {\
-        type* data;\
         size_t count;\
         size_t size;\
+        type* data;\
         float realloc_ratio;\
     } vector_name;\
 \
