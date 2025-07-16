@@ -4,6 +4,18 @@
 // TODO: ADDITION: GameObject Shapes
 // TODO: ADDITION: GameObject Textures
 // TODO: ADDITION: World Physics, Collisions, CollisionBoxes
+// TODO: ADDITION/REFAC: Error Logging to File.
+
+// TODO: Cleanup GameObject formatting
+// TODO: Refactor World handling of GameObjects and Pool
+// TODO: Refactor size variables with size_t
+
+// CURRENT:
+//  - Collision Boxes
+//  - Just rendering them for now.
+//      - Possibly start implementing the rotation on them.
+//  - Game Objects were overhauled a bit
+//      - World needs to handle them better, should be Creating objects in the World using a GOConfig.
 
 #include "platform.h"
 #include "app_config.h"

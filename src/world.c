@@ -8,6 +8,9 @@
 #include "app_config.h" 
 #include "world_config.h"
 
+// TODO: Really look into Refactoring this class
+// seems like theres a lot of not so good parameters and such.
+
 
 int world_init(struct World* self) {
     // Initialize GameObject Dynamic Array
