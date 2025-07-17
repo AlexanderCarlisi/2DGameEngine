@@ -11,9 +11,10 @@
 // TODO: Refactor size variables with size_t
 
 // CURRENT:
-//  - Collision Boxes
-//  - Just rendering them for now.
+//  = Collision Boxes
+//  - Implement Rendering of Shapes / Collision Boxes
 //      - Possibly start implementing the rotation on them.
+//
 //  - Game Objects were overhauled a bit
 //      - World needs to handle them better, should be Creating objects in the World using a GOConfig.
 

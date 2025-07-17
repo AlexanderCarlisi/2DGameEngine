@@ -7,6 +7,7 @@
 // While you can have Multiple Worlds, only one World can be loaded at a time.
 // TODO: Create a Setup where World struct is used by a WorldHandler, each World will have a WorldConfig
 // TODO: setup framework in a way that the users can Store and Load Worlds, with their own Initialization Functions.
+// TODO: GameObjects should really be a Memory Pool.
 typedef struct World {
     GameObject** objects; // Dynamic Array of Pointers to GameObjects.
     int objectsCount; // Amount of Objects present in Objects Array.
