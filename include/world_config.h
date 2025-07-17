@@ -1,10 +1,13 @@
 #ifndef WORLD_CONFIG_H
 #define WORLD_CONFIG_H
 
+/// Size of statically allocated Game Object Array.
+#define WORLD_CONFIG_STATIC_ALLOC 100
+
 typedef struct WorldConfig {
-    float reallocation_ratio;    // ObjectsSize gets multiplied by this value when needed, or when reallocate is called.
-    float pixels_per_meter;       // Used for Pose methods.
-    float gravity_field;         // Gravity -> Newtons per Kg || Meters per Second/Second
+    float reallocation_ratio;   // ObjectsSize gets multiplied by this value when needed, or when reallocate is called.
+    float pixels_per_meter;     // Used for Pose methods.
+    float gravity_field;        // Gravity -> Newtons per Kg || Meters per Second/Second
 } WorldConfig;
 
 // Get a Pointer to the active World Config

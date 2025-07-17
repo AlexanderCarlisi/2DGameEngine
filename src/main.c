@@ -15,6 +15,7 @@
 //  - Implement Rendering of Shapes / Collision Boxes
 //      - Possibly start implementing the rotation on them.
 //
+//  - Before rending game objects, FIX how the World handles them.
 //  - Game Objects were overhauled a bit
 //      - World needs to handle them better, should be Creating objects in the World using a GOConfig.
 
