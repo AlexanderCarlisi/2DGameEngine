@@ -15,36 +15,55 @@
 // DYNAMIC : Affected by Physics, gravity and collisions. Ofcourse you can change these behaviors.
 //
 
+// TODO: Fix name formatting in Structs
+// TODO: Proper Rotation.
+
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
 // Includes
-#include <stdint.h>
-#include "pose.h"
-#include "shape.h"
+#include "collision_box.h"
 
 struct World; // WORLD_H
 
+// Dynamic Array for Collision Boxes
+DECLARE_VECTOR(CollisionBoxVector, vector_collision_box, struct CollisionBox)
 
+
+// Layout: [0, 1]
+// Size: 1 byte
 typedef enum ObjectType {
-    STATIC,
-    DYNAMIC
+    STATIC, // Not affected by Forces.
+    DYNAMIC // Affected by Forces.
 } ObjectType;
 
 
+// Layout: [Vector, Pose, Pose, int, float, 1bEnum]
+// Size: 73(80), 57(60)
 typedef struct GameObject {
-    ObjectType objectType;
-    Pose pose;
-    Pose previousPose;
+    struct CollisionBoxVector collider_vector;
+    struct Pose pose; // Bottom Left relative to CollionBox
+    struct Pose previous_pose;
+    int world_index;
     float rotation;
-    uint32_t color;
-    Shape shape;
-    int worldIndex;
-
+    enum ObjectType object_type;
 } GameObject;
 
 
-void initialize_gameobject(struct GameObject* obj, enum ObjectType objType, uint32_t color);
+// Layout: [Vector, Pose, float, 1bEnum]
+// Size: 53(56), 37(40)
+typedef struct GameObjectConfig {
+    struct CollisionBoxVector collider_vector;
+    struct Pose starting_pose;
+    float starting_rotation;
+    enum ObjectType object_type;
+} GameObjectConfig;
 
+
+// /// @brief Creates and Initializes an empty collision box vector.
+// CollisionBoxVector create_empty_collision_box_vector(size_t size);
+
+/// @brief Initializes the GameObject with the provided Config.
+void gameobject_init(struct GameObject* obj, struct GameObjectConfig* config);
 
 #endif // GAME_OBJECT_H
