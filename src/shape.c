@@ -5,13 +5,14 @@
 #include <stdlib.h>
 #include "world.h"
 
+DEFINE_VECTOR(VertexVector, vector_vertex, struct Vertex)
+DEFINE_VECTOR(PoseVector, vector_pose, struct Pose)
+
 
 // Function to calculate polar angle with respect to P0
 // float calculatePolarAngle(Pose* p0, Pose* p1) {
 //     return atan2(p1->yMeters - p0->yMeters, p1->xMeters - p0->xMeters);
 // }
-
-
 
 // [6, 5, 4, 3, 2, 1, 0]
 // Divide the array until there is only 1 element
@@ -22,29 +23,6 @@
 // [3, 4, 5, 6], [0, 1, 2]
 // ^^ Repeat Pattern until Complete
 // [0, 1, 2, 3, 4, 5, 6]
-
-//
-// Paramters: 
-// the fucking array = Pose**
-// the size of the fucking array = int
-// 
-// arrOfarrs = []
-// for (int i = 0; i < thesizeofthefuckingarray; i++) {
-//    
-// }
-//  
-//
-//
-//
-//
-
-
-
-
-
-
-
-
 
 // // Merge Sort for sorting based on polar angle
 // void mergeSort(Pose* vertices, int low, int high, Pose* p0) {
@@ -116,7 +94,8 @@
 //     free(right);
 // }
 
-bool is_convex(Pose** verticesPtr, int length) {
+// TODO: This.
+bool shape_is_convex(struct VertexVector vertices) {
     // Graham scan
     // Find the lowest x/y-cordinate point, searching for lowest y first.
     // Store this point P. This is an O(n) check
@@ -162,13 +141,37 @@ bool is_convex(Pose** verticesPtr, int length) {
 }
 
 
-void create_shape_square(struct World* world, struct Shape* shape) {
-    // TODO: Whatever this was supposed to be
-    // shape->verticesCount = 4;
-    // shape->vertices = calloc(shape->verticesCount, sizeof(Pose));
-    // shape->convex = true;
-    // update_pose_pixels(world, *shape->vertices[0], (float) world->screenWidthPx * 3/4.0f, (float) world->screenHeightPx * 3/4.0f);
-    // update_pose_pixels(world, *shape->vertices[1], (float) world->screenWidthPx * 3/4.0f, (float) world->screenHeightPx * 1/4.0f);
-    // update_pose_pixels(world, *shape->vertices[2], (float) world->screenWidthPx * 1/4.0f, (float) world->screenHeightPx * 3/4.0f);
-    // update_pose_pixels(world, *shape->vertices[3], (float) world->screenWidthPx * 1/4.0f, (float) world->screenHeightPx * 1/4.0f);
+void shape_init(struct Shape* shape, struct Pose size, uint32_t color, bool convex, struct VertexVector vertices) {
+    shape->size = size;
+    shape->color = color;
+    shape->convex = convex;
+    shape->normalized_vertices = vertices;
+    struct PoseVector pv;
+    vector_pose_init(&pv, 4);
+    vector_pose_add(&pv, (struct Pose) {0, 0, 0, 0});
+    vector_pose_add(&pv, (struct Pose) {0, 0, 0, 0});
+    vector_pose_add(&pv, (struct Pose) {0, 0, 0, 0});
+    vector_pose_add(&pv, (struct Pose) {0, 0, 0, 0});
+    shape->vertex_poses = pv;
+}
+
+
+struct VertexVector shape_create_vertices(int vertices) {
+    struct VertexVector vv;
+    vector_vertex_init(&vv, vertices);
+    // theta(i) = 2pi*i/n
+    for (int i = 0; i < vertices; i++) {
+        float theta = (2.0f * SHAPE_PI * i) / vertices;
+        float x = (cos(theta) + 1.0f) / 2.0f;
+        float y = (sin(theta) + 1.0f) / 2.0f;
+        vector_vertex_add(&vv, (struct Vector) {x, y});
+    }
+    return vertices;
+}
+
+
+struct Shape shape_create_box(struct Pose size, uint32_t color) {
+    struct Shape shape;
+    shape_init(&shape, size, color, true, shape_create_vertices(4));
+    return shape;
 }
