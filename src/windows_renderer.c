@@ -1,9 +1,9 @@
 #ifdef _WIN32
 
 #include "windows_renderer.h"
-#include "game_object.h"
 #include <windows.h>
 #include "app_config.h"
+#include "world.h"
 
 
 void win_renderer_clear(struct Renderer* self, uint32_t color) {
@@ -35,21 +35,36 @@ void win_renderer_draw_shape(struct Renderer* self, int x, int y, uint32_t color
     // TODO
 }
 
-void win_renderer_draw(struct Renderer* self, float alpha, struct GameObject** objects, int amountOfGameObjects) {
+// void win_renderer_draw(struct Renderer* self, float alpha, struct GameObject** objects, int amountOfGameObjects) {
     // Drawing objects as singular pixels
-    for (int i = 0; i < amountOfGameObjects; i++) {
-        GameObject obj = *objects[i]; // objects is a pointer to a Dynamic Array of GameObject Pointers | ;)
-        if (!pose_equals(&obj.pose, &obj.previousPose)) {
-            win_renderer_interpolate_pixel(self, obj.previousPose.xPixels, obj.previousPose.yPixels, obj.pose.xPixels, obj.pose.yPixels, obj.color, alpha);
-        } else {
-            win_renderer_draw_pixel(self, obj.pose.xPixels, obj.pose.yPixels, obj.color);
-        }
-    }
+    // for (int i = 0; i < amountOfGameObjects; i++) {
+    //     GameObject obj = *objects[i]; // objects is a pointer to a Dynamic Array of GameObject Pointers | ;)
+    //     if (!pose_equals(&obj.pose, &obj.previousPose)) {
+    //         win_renderer_interpolate_pixel(self, obj.previousPose.xPixels, obj.previousPose.yPixels, obj.pose.xPixels, obj.pose.yPixels, obj.color, alpha);
+    //     } else {
+    //         win_renderer_draw_pixel(self, obj.pose.xPixels, obj.pose.yPixels, obj.color);
+    //     }
+    // }
 
     // Drawing objects as Shapes
     // for (int i = 0; i < amountOfGameObjects; i++) {
         
     // }
+// }
+
+void win_renderer_draw(struct Renderer* self, float alpha) {
+	struct Interval* interval_buffer = world_get_buffer_interval();
+	struct Interval* interval_pool = world_get_pool_interval();
+
+	for (size_t i = interval_buffer->start; i < interval_buffer->end; i++) {
+		// Draw each active object on buffer.
+		// world_buffer_get_object()
+	}
+
+	for (size_t i = interval_pool->start; i < interval_pool->end; i++) {
+		// Draw each active object in pool.
+		// world_pool_get_object()
+	}
 }
 
 void win_renderer_display(struct Renderer* self) {

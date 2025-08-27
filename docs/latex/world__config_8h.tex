@@ -1,0 +1,222 @@
+\doxysection{include/world\+\_\+config.h File Reference}
+\hypertarget{world__config_8h}{}\label{world__config_8h}\index{include/world\_config.h@{include/world\_config.h}}
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+Include dependency graph for world\+\_\+config.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{world__config_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{world__config_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structInterval}{Interval}}
+\begin{DoxyCompactList}\small\item\em An inclusive interval, generally used for Buffers and Pools. Layout\+: \mbox{[}size\+\_\+t, size\+\_\+t\mbox{]} Size\+: 16, 8. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structWorldConfig}{World\+Config}}
+\begin{DoxyCompactList}\small\item\em Settings and Information on a \doxylink{structWorld}{World} and it\textquotesingle{}s data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{world__config_8h_a131d27cc283cb8ee025874e3fc1d44d9}{WORLD\+\_\+\+CONFIG\+\_\+\+OBJECT\+\_\+\+BUFFER\+\_\+\+SIZE}}~100
+\begin{DoxyCompactList}\small\item\em Size of statically allocated Game Object Array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structInterval}{Interval}} \mbox{\hyperlink{world__config_8h_aaf2b87053de26e4b42b9080f96979381}{Interval}}
+\item 
+typedef struct \mbox{\hyperlink{structWorldConfig}{World\+Config}} \mbox{\hyperlink{world__config_8h_a4da110ac747cf1f425ec8c9a0c0e9277}{World\+Config}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structWorldConfig}{World\+Config}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{world__config_8h_ac4503aeed176c47445f09d462ec00733}{worldconfig\+\_\+get}} ()
+\begin{DoxyCompactList}\small\item\em Get a Pointer to the active \doxylink{structWorld}{World} Config. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structInterval}{Interval}} \mbox{\hyperlink{world__config_8h_abbdc2089326b10d83bf398145f3f8bcc}{worldconfig\+\_\+get\+\_\+buffer\+\_\+interval}} ()
+\begin{DoxyCompactList}\small\item\em Get the active \doxylink{structWorld}{World} Config\textquotesingle{}s buffer interval. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structInterval}{Interval}} \mbox{\hyperlink{world__config_8h_ab9b80b1db58210738417f33f03e64f6a}{worldconfig\+\_\+get\+\_\+pool\+\_\+interval}} ()
+\begin{DoxyCompactList}\small\item\em Get the active \doxylink{structWorld}{World} Config\textquotesingle{}s pool interval. \end{DoxyCompactList}\item 
+size\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{world__config_8h_a7ce337357c6dd188475e44f8078e40e0}{worldconfig\+\_\+get\+\_\+pool\+\_\+size\+\_\+ptr}} ()
+\begin{DoxyCompactList}\small\item\em Get a Pointer to the Pool Size of the active \doxylink{structWorld}{World} Config, Address Persists throughout config changes. \end{DoxyCompactList}\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{world__config_8h_a8412a3edc64ed9e2632f59c6ad50ce3c}{worldconfig\+\_\+get\+\_\+realloc\+\_\+ptr}} ()
+\begin{DoxyCompactList}\small\item\em Get a Pointer to the Reallocation Ratio, Address persists throughout config changes. \end{DoxyCompactList}\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{world__config_8h_a1a8cb15edca3f6bd147bf1556af5179c}{worldconfig\+\_\+get\+\_\+ppm\+\_\+ptr}} ()
+\begin{DoxyCompactList}\small\item\em Get a Pointer to Pixels per Meter value, Address persists throughout config changes. \end{DoxyCompactList}\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{world__config_8h_abe3e7dc965c211ce6707393e12985cf5}{worldconfig\+\_\+get\+\_\+gf\+\_\+ptr}} ()
+\begin{DoxyCompactList}\small\item\em Get a Pointer to the Gravity Field, Address persists throughout config changes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{world__config_8h_a161abcd4fe171159c0c08a6bf24666aa}{worldconfig\+\_\+set\+\_\+pool\+\_\+size}} (size\+\_\+t pool\+Size)
+\begin{DoxyCompactList}\small\item\em Update active config with a new Pool Size. Memory address persists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{world__config_8h_a386ce6d7120d542ede1db24a09a2a967}{worldconfig\+\_\+set\+\_\+realloc}} (float realloc\+Ratio)
+\begin{DoxyCompactList}\small\item\em Update active config with new Reallocation Ratio. Memory address persists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{world__config_8h_a64ed94de7d0ea5f1bd7dea616f4ce544}{worldconfig\+\_\+set\+\_\+ppm}} (float pixels\+Per\+Meter)
+\begin{DoxyCompactList}\small\item\em Update active config with new Pixels per Meter proportion. Memory address persists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{world__config_8h_a457d22a5476710ab87ee7f8d0635512a}{worldconfig\+\_\+set\+\_\+gf}} (float gravity\+Field)
+\begin{DoxyCompactList}\small\item\em Update active config with new Gravity Field. Memory address persists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{world__config_8h_ac16e923dafb182baa6eba5b9e64b11f3}{worldconfig\+\_\+set}} (struct \mbox{\hyperlink{structWorldConfig}{World\+Config}} \texorpdfstring{$\ast$}{*}world\+Config)
+\begin{DoxyCompactList}\small\item\em Updates active config with new values. Therefore, Memory addresses persist. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{world__config_8h_a131d27cc283cb8ee025874e3fc1d44d9}\label{world__config_8h_a131d27cc283cb8ee025874e3fc1d44d9} 
+\index{world\_config.h@{world\_config.h}!WORLD\_CONFIG\_OBJECT\_BUFFER\_SIZE@{WORLD\_CONFIG\_OBJECT\_BUFFER\_SIZE}}
+\index{WORLD\_CONFIG\_OBJECT\_BUFFER\_SIZE@{WORLD\_CONFIG\_OBJECT\_BUFFER\_SIZE}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{WORLD\_CONFIG\_OBJECT\_BUFFER\_SIZE}{WORLD\_CONFIG\_OBJECT\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define WORLD\+\_\+\+CONFIG\+\_\+\+OBJECT\+\_\+\+BUFFER\+\_\+\+SIZE~100}
+
+
+
+Size of statically allocated Game Object Array. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{world__config_8h_aaf2b87053de26e4b42b9080f96979381}\label{world__config_8h_aaf2b87053de26e4b42b9080f96979381} 
+\index{world\_config.h@{world\_config.h}!Interval@{Interval}}
+\index{Interval@{Interval}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{Interval}{Interval}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structInterval}{Interval}} \mbox{\hyperlink{structInterval}{Interval}}}
+
+\Hypertarget{world__config_8h_a4da110ac747cf1f425ec8c9a0c0e9277}\label{world__config_8h_a4da110ac747cf1f425ec8c9a0c0e9277} 
+\index{world\_config.h@{world\_config.h}!WorldConfig@{WorldConfig}}
+\index{WorldConfig@{WorldConfig}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{WorldConfig}{WorldConfig}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structWorldConfig}{World\+Config}} \mbox{\hyperlink{structWorldConfig}{World\+Config}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{world__config_8h_ac4503aeed176c47445f09d462ec00733}\label{world__config_8h_ac4503aeed176c47445f09d462ec00733} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_get@{worldconfig\_get}}
+\index{worldconfig\_get@{worldconfig\_get}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_get()}{worldconfig\_get()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structWorldConfig}{World\+Config}} \texorpdfstring{$\ast$}{*} worldconfig\+\_\+get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get a Pointer to the active \doxylink{structWorld}{World} Config. 
+
+\Hypertarget{world__config_8h_abbdc2089326b10d83bf398145f3f8bcc}\label{world__config_8h_abbdc2089326b10d83bf398145f3f8bcc} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_get\_buffer\_interval@{worldconfig\_get\_buffer\_interval}}
+\index{worldconfig\_get\_buffer\_interval@{worldconfig\_get\_buffer\_interval}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_get\_buffer\_interval()}{worldconfig\_get\_buffer\_interval()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structInterval}{Interval}} worldconfig\+\_\+get\+\_\+buffer\+\_\+interval (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the active \doxylink{structWorld}{World} Config\textquotesingle{}s buffer interval. 
+
+\Hypertarget{world__config_8h_abe3e7dc965c211ce6707393e12985cf5}\label{world__config_8h_abe3e7dc965c211ce6707393e12985cf5} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_get\_gf\_ptr@{worldconfig\_get\_gf\_ptr}}
+\index{worldconfig\_get\_gf\_ptr@{worldconfig\_get\_gf\_ptr}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_get\_gf\_ptr()}{worldconfig\_get\_gf\_ptr()}}
+{\footnotesize\ttfamily float \texorpdfstring{$\ast$}{*} worldconfig\+\_\+get\+\_\+gf\+\_\+ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get a Pointer to the Gravity Field, Address persists throughout config changes. 
+
+\Hypertarget{world__config_8h_ab9b80b1db58210738417f33f03e64f6a}\label{world__config_8h_ab9b80b1db58210738417f33f03e64f6a} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_get\_pool\_interval@{worldconfig\_get\_pool\_interval}}
+\index{worldconfig\_get\_pool\_interval@{worldconfig\_get\_pool\_interval}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_get\_pool\_interval()}{worldconfig\_get\_pool\_interval()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structInterval}{Interval}} worldconfig\+\_\+get\+\_\+pool\+\_\+interval (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the active \doxylink{structWorld}{World} Config\textquotesingle{}s pool interval. 
+
+\Hypertarget{world__config_8h_a7ce337357c6dd188475e44f8078e40e0}\label{world__config_8h_a7ce337357c6dd188475e44f8078e40e0} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_get\_pool\_size\_ptr@{worldconfig\_get\_pool\_size\_ptr}}
+\index{worldconfig\_get\_pool\_size\_ptr@{worldconfig\_get\_pool\_size\_ptr}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_get\_pool\_size\_ptr()}{worldconfig\_get\_pool\_size\_ptr()}}
+{\footnotesize\ttfamily size\+\_\+t \texorpdfstring{$\ast$}{*} worldconfig\+\_\+get\+\_\+pool\+\_\+size\+\_\+ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get a Pointer to the Pool Size of the active \doxylink{structWorld}{World} Config, Address Persists throughout config changes. 
+
+\begin{DoxyNote}{Note}
+This pointer is not the same as the actual Pool Size, just how it was configured when the \doxylink{structWorld}{World} Config was first loaded. 
+\end{DoxyNote}
+\Hypertarget{world__config_8h_a1a8cb15edca3f6bd147bf1556af5179c}\label{world__config_8h_a1a8cb15edca3f6bd147bf1556af5179c} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_get\_ppm\_ptr@{worldconfig\_get\_ppm\_ptr}}
+\index{worldconfig\_get\_ppm\_ptr@{worldconfig\_get\_ppm\_ptr}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_get\_ppm\_ptr()}{worldconfig\_get\_ppm\_ptr()}}
+{\footnotesize\ttfamily float \texorpdfstring{$\ast$}{*} worldconfig\+\_\+get\+\_\+ppm\+\_\+ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get a Pointer to Pixels per Meter value, Address persists throughout config changes. 
+
+\Hypertarget{world__config_8h_a8412a3edc64ed9e2632f59c6ad50ce3c}\label{world__config_8h_a8412a3edc64ed9e2632f59c6ad50ce3c} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_get\_realloc\_ptr@{worldconfig\_get\_realloc\_ptr}}
+\index{worldconfig\_get\_realloc\_ptr@{worldconfig\_get\_realloc\_ptr}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_get\_realloc\_ptr()}{worldconfig\_get\_realloc\_ptr()}}
+{\footnotesize\ttfamily float \texorpdfstring{$\ast$}{*} worldconfig\+\_\+get\+\_\+realloc\+\_\+ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get a Pointer to the Reallocation Ratio, Address persists throughout config changes. 
+
+\Hypertarget{world__config_8h_ac16e923dafb182baa6eba5b9e64b11f3}\label{world__config_8h_ac16e923dafb182baa6eba5b9e64b11f3} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_set@{worldconfig\_set}}
+\index{worldconfig\_set@{worldconfig\_set}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_set()}{worldconfig\_set()}}
+{\footnotesize\ttfamily void worldconfig\+\_\+set (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structWorldConfig}{World\+Config}} \texorpdfstring{$\ast$}{*}}]{world\+Config }\end{DoxyParamCaption})}
+
+
+
+Updates active config with new values. Therefore, Memory addresses persist. 
+
+\Hypertarget{world__config_8h_a457d22a5476710ab87ee7f8d0635512a}\label{world__config_8h_a457d22a5476710ab87ee7f8d0635512a} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_set\_gf@{worldconfig\_set\_gf}}
+\index{worldconfig\_set\_gf@{worldconfig\_set\_gf}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_set\_gf()}{worldconfig\_set\_gf()}}
+{\footnotesize\ttfamily void worldconfig\+\_\+set\+\_\+gf (\begin{DoxyParamCaption}\item[{float}]{gravity\+Field }\end{DoxyParamCaption})}
+
+
+
+Update active config with new Gravity Field. Memory address persists. 
+
+\Hypertarget{world__config_8h_a161abcd4fe171159c0c08a6bf24666aa}\label{world__config_8h_a161abcd4fe171159c0c08a6bf24666aa} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_set\_pool\_size@{worldconfig\_set\_pool\_size}}
+\index{worldconfig\_set\_pool\_size@{worldconfig\_set\_pool\_size}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_set\_pool\_size()}{worldconfig\_set\_pool\_size()}}
+{\footnotesize\ttfamily void worldconfig\+\_\+set\+\_\+pool\+\_\+size (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{pool\+Size }\end{DoxyParamCaption})}
+
+
+
+Update active config with a new Pool Size. Memory address persists. 
+
+\begin{DoxyNote}{Note}
+Doesn\textquotesingle{}t automatically reallocate the Object Pool. 
+\end{DoxyNote}
+\Hypertarget{world__config_8h_a64ed94de7d0ea5f1bd7dea616f4ce544}\label{world__config_8h_a64ed94de7d0ea5f1bd7dea616f4ce544} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_set\_ppm@{worldconfig\_set\_ppm}}
+\index{worldconfig\_set\_ppm@{worldconfig\_set\_ppm}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_set\_ppm()}{worldconfig\_set\_ppm()}}
+{\footnotesize\ttfamily void worldconfig\+\_\+set\+\_\+ppm (\begin{DoxyParamCaption}\item[{float}]{pixels\+Per\+Meter }\end{DoxyParamCaption})}
+
+
+
+Update active config with new Pixels per Meter proportion. Memory address persists. 
+
+\Hypertarget{world__config_8h_a386ce6d7120d542ede1db24a09a2a967}\label{world__config_8h_a386ce6d7120d542ede1db24a09a2a967} 
+\index{world\_config.h@{world\_config.h}!worldconfig\_set\_realloc@{worldconfig\_set\_realloc}}
+\index{worldconfig\_set\_realloc@{worldconfig\_set\_realloc}!world\_config.h@{world\_config.h}}
+\doxysubsubsection{\texorpdfstring{worldconfig\_set\_realloc()}{worldconfig\_set\_realloc()}}
+{\footnotesize\ttfamily void worldconfig\+\_\+set\+\_\+realloc (\begin{DoxyParamCaption}\item[{float}]{realloc\+Ratio }\end{DoxyParamCaption})}
+
+
+
+Update active config with new Reallocation Ratio. Memory address persists. 
+

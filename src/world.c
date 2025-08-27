@@ -1,118 +1,101 @@
 #include "world.h"
-#include "game_object.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "color.h"
-#include "pose.h"
-#include "shape.h"
-#include "app_config.h" 
-#include "world_config.h"
+#include <string.h>
 
-// TODO: Really look into Refactoring this class
-// seems like theres a lot of not so good parameters and such.
+DEFINE_VECTOR(GameObjectVector, vector_game_object, struct GameObject);
 
+static struct GameObject object_buffer[WORLD_CONFIG_OBJECT_BUFFER_SIZE];
+static struct GameObjectVector object_pool;
+static struct Interval interval_buffer;
+static struct Interval interval_pool;
+static void (*free_function)();
 
-// int world_init(struct World* self) {
-//     // Initialize GameObject Dynamic Array
-//     self->objectsCount = 1;
-//     self->objectsSize = 2;
-//     self->objects = (GameObject**) calloc(self->objectsSize, sizeof(GameObject*));
-//     if (self->objects == NULL) {
-//         printf(">>> world_init(): World->Objects Allocation Failure");
-//         return 0;
-//     }
+bool world_realloc_pool(size_t newSize) {
+	if (object_pool.data == NULL) {
+		return vector_game_object_init(&object_pool, newSize);
 
-//     if (world_create_object(self, &self->objects[0]) == 0) {
-//         printf(">>> world_init(): GameObject Allocation Failure");
-//         return 0;
-//     }
+	} else if (object_pool.size == newSize) {
+		return vector_game_object_realloc(&object_pool);
 
-//     // Test Code
-//     GameObject* testObj = self->objects[0];
-//     testObj->color = rgba(0, 0, 255, 255);
-//     // create_shape_square(self, &testObj->shape);
-//     struct Aspect* resolution = appconfig_get_resolution();
-//     update_pose_pixels(&testObj->pose, resolution->width / 2, resolution->height / 2);
-//     update_pose_pixels(&testObj->previousPose, resolution->width / 2, resolution->height / 2);
+	} else {
+		return vector_game_object_realloc_set(&object_pool, newSize);
+	}
+}
 
-//     // Test window resizing
+bool interval_bounds_check(struct Interval* interval, size_t realEnd) {
+	return interval->start >= 0 && interval->start <= interval->end && interval->end <= realEnd;
+}
 
-//     return 1;
-// }
+bool world_remove_from_buffer(struct Interval* interval) {
+	if (!interval_bounds_check(interval, WORLD_CONFIG_OBJECT_BUFFER_SIZE)) {
+		return false;
+	}
+	for (size_t i = interval->start; i < interval->end; i++) {
+	  	struct GameObject* go = &object_buffer[i];
+	  	vector_collision_box_free(&go->collider_vector);
+		memset(go, 0, sizeof(struct GameObject));
+	}
+	return true;
+}
 
-// int world_insert_object(struct World* self, struct GameObject* objectptr) {
-//     if (self->objects == NULL) return 0;
-//     self->objectsCount++;
+bool world_remove_from_pool(struct Interval* interval) {
+	if (!interval_bounds_check(interval, object_pool.size)) {
+		return false;
+	}
+	for (size_t i = interval->start; i < interval->end; i++) {
+	  	struct GameObject* go = &object_pool.data[i];
+	  	vector_collision_box_free(&go->collider_vector);
+		memset(go, 0, sizeof(struct GameObject));
+	}
+	return true;
+}
 
-//     // Reallocate when needed
-//     if (self->objectsCount > self->objectsSize) {
-//         world_reallocate_objects(self);
-//     }
+struct Interval* world_get_buffer_interval() {
+	return &interval_buffer;
+}
 
-//     objectptr->worldIndex = self->objectsCount - 1;
-//     self->objects[objectptr->worldIndex] = objectptr;
-//     return 1;
-// }
+struct Interval* world_get_pool_interval() {
+	return &interval_pool;
+}
 
-// int world_create_object(struct World* self, struct GameObject** objectptr) {
-//     *objectptr = (GameObject*) malloc(sizeof(GameObject));
-//     if (*objectptr == NULL) {
-//         printf(">>> world_create_object(): GameObject Allocation Failure <<<");
-//         return 0;
-//     }
-//     if (world_insert_object(self, *objectptr) == 0) {
-//         printf(">>> world_create_object(): GameObject Insertion Failure <<<");
-//         return 0;
-//     }
-//     return 1;
-// }
+bool world_set_buffer_interval(struct Interval* interval) {
+	if (interval_bounds_check(interval, WORLD_CONFIG_OBJECT_BUFFER_SIZE)) {
+		interval_buffer.start = interval->start;
+		interval_pool.end = interval->end;
+		return true;
+	}
+	return false;
+}
 
-// int world_destroy_object(struct World* self, int worldIndex) {
-//     if (worldIndex < 0 || worldIndex >= self->objectsCount) {
-//         printf(">>> world_destroy_object(): Index out of Bounds <<<\n");
-//         return 0;
-//     }
+bool world_set_pool_interval(struct Interval* interval) {
+	if (interval_bounds_check(interval, object_pool.size)) {
+		interval_pool.start = interval->start;
+		interval_pool.end = interval->end;
+		return true;
+	}
+	return false;
+}
 
-//     // Object to remove
-//     GameObject* target = self->objects[worldIndex];
+struct GameObject* world_buffer_get_object(size_t index) {
+	return &object_buffer[index];
+}
 
-//     // Object at the end of the list
-//     int lastIndex = self->objectsCount - 1;
-//     GameObject* lastObject = self->objects[lastIndex];
+struct GameObject* world_pool_get_object(size_t index) {
+	return &object_pool.data[index];
+}
 
-//     if (worldIndex != lastIndex) {
-//         // Move the last object to the deleted slot
-//         self->objects[worldIndex] = lastObject;
-//         lastObject->worldIndex = worldIndex;
-//     }
+void world_load(struct World* world) {
+	// TODO: setup proper error handling
+	worldconfig_set(world->config);
+	world_realloc_pool(worldconfig_get_pool_size());
+	world_set_buffer_interval(worldconfig_get_buffer_interval());
+	world_set_pool_interval(worldconfig_get_pool_interval());
+}
 
-//     // Null out and decrement
-//     self->objects[lastIndex] = NULL;
-//     self->objectsCount--;
+void world_set_free_function(void (*free_func)()) {
+	free_function = free_func;
+}
 
-//     // Free the target object
-//     free(target);
-//     return 1;
-// }
-
-// int world_reallocate_objects(struct World* self) { 
-//     self->objectsSize *= *worldconfig_get_realloc_ptr();
-//     GameObject** reallocated = (GameObject**) realloc(self->objects, self->objectsSize * sizeof(GameObject));
-//     if (reallocated == NULL) {
-//         printf("\n>>> world_insert_object(): Objects Reallocation Failure <<<\n");
-//         return 0;
-//     }
-//     self->objects = reallocated;
-//     return 1;
-// }
-
-// void world_deallocate(struct World* self) {
-//     for (int i = 0; i < self->objectsCount; i++) {
-//         free(self->objects[i]);
-//     }
-//     free(self->objects);
-// }
-
-// void world_update_physics(struct World* self) {
-//     // TODO: ALLIS BRUH
-// }
+void world_free() {
+	vector_game_object_free(&object_pool);
+	free_function();
+}

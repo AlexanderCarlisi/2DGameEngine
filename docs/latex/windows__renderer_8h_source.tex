@@ -1,0 +1,40 @@
+\doxysection{windows\+\_\+renderer.\+h}
+\hypertarget{windows__renderer_8h_source}{}\label{windows__renderer_8h_source}\index{include/windows\_renderer.h@{include/windows\_renderer.h}}
+\mbox{\hyperlink{windows__renderer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ WINRENDERER\_H}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ WINRENDERER\_H}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{render_8h}{render.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{structRenderer}{Renderer}}\ base;\ \textcolor{comment}{//\ Renderer\ as\ first\ member\ so\ it's\ the\ start\ of\ the\ memory,\ meaning\ WindowsRenderer\ can\ be\ cast\ to\ a\ Renderer\ Struct}}
+\DoxyCodeLine{00015\ \ \ \ \ HWND*\ hwnd;\ \textcolor{comment}{//\ Window\ Handle}}
+\DoxyCodeLine{00016\ \ \ \ \ HDC\ hdc;\ \textcolor{comment}{//\ Device\ Connect\ Handle\ :\ Bridge\ between\ drawing\ functions\ and\ hardware}}
+\DoxyCodeLine{00017\ \ \ \ \ HBITMAP\ bitmap;\ \textcolor{comment}{//\ Bitmap\ Handle\ :\ Pixel\ Data}}
+\DoxyCodeLine{00018\ \ \ \ \ BITMAPINFO\ bitmapInfo;\ \textcolor{comment}{//\ Defines\ the\ Bitmaps\ properties}}
+\DoxyCodeLine{00019\ \}\ WindowsRenderer;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ win\_renderer\_init(\mbox{\hyperlink{structRenderer}{Renderer}}*\ self);}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ win\_renderer\_clear(\mbox{\hyperlink{structRenderer}{Renderer}}*\ self,\ uint32\_t\ color);}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{void}\ win\_renderer\_draw\_pixel(\mbox{\hyperlink{structRenderer}{Renderer}}*\ self,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ uint32\_t\ color);}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ win\_renderer\_draw\_shape(\mbox{\hyperlink{structRenderer}{Renderer}}*\ self,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ uint32\_t\ color,\ \textcolor{keywordtype}{int}\ vertices);}
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{void}\ win\_renderer\_draw(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structRenderer}{Renderer}}*\ self,\ \textcolor{keywordtype}{float}\ alpha,\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{structGameObject}{GameObject}}**\ objects,\ \textcolor{keywordtype}{int}\ amountOfGameObjects);}
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ win\_renderer\_display(\mbox{\hyperlink{structRenderer}{Renderer}}*\ self);}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{void}\ win\_renderer\_release\_resources(\mbox{\hyperlink{structRenderer}{Renderer}}*\ self);}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ win\_renderer\_set\_aspects(\mbox{\hyperlink{structRenderer}{Renderer}}*\ self);}
+\DoxyCodeLine{00030\ \mbox{\hyperlink{structRenderer}{Renderer}}*\ create\_windows\_renderer(HWND*\ hwnd);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WINRENDERER\_H}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_WIN32}}
+
+\end{DoxyCode}

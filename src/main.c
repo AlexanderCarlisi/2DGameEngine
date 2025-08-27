@@ -9,6 +9,8 @@
 // TODO: Cleanup GameObject formatting
 // TODO: Refactor World handling of GameObjects and Pool
 // TODO: Refactor size variables with size_t
+//
+// TODO: Refactor Renderer to not be like a 'object' (maybe)
 
 // CURRENT:
 //  = Collision Boxes
@@ -18,6 +20,14 @@
 //  - Before rending game objects, FIX how the World handles them.
 //  - Game Objects were overhauled a bit
 //      - World needs to handle them better, should be Creating objects in the World using a GOConfig.
+//
+//  - World's been overhauled, now its time to refactor the rest of the Code to work with it.
+//
+//  - Theres been some contemplation on storing pointers for frequently accessed values, and its a waste of memory
+//  - Renderer is the main issue with this, but follow the errors ;)
+//
+//  =======
+//  Implementing Unix support
 
 #include "platform.h"
 #include "app_config.h"

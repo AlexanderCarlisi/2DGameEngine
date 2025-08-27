@@ -4,47 +4,113 @@
 #include "world_config.h"
 #include "game_object.h"
 
+DECLARE_VECTOR(GameObjectVector, vector_game_object, struct GameObject);
 
-// World object, holds gameobjects, and whatever else I come up with
-// While you can have Multiple Worlds, only one World can be loaded at a time.
-// TODO: Create a Setup where World struct is used by a WorldHandler, each World will have a WorldConfig
-// TODO: setup framework in a way that the users can Store and Load Worlds, with their own Initialization Functions.
-// TODO: GameObjects should really be a Memory Pool.
+/**
+ * @struct World
+ * @brief Container for a 'World', holds functions and a WorldConfig used by
+ * the world.
+ *
+ * @note For adding GameObjects to the Buffer and Pool @see world
+ *
+ * @var World::config
+ * The WorldConfig used by the World. This will be set to the Active 
+ * WorldConfig when this World is set as the Active World in world.
+ * @see world_set_active
+ *
+ * @var World::init
+ * Function Pointer to the World's initialization function. This function is
+ * called the moment the World is loaded using @see world_load.
+ * This should be used to place GameObjects on the Buffer and Pool, as the
+ * space has been delegated for the World when this function is called.
+ * @see worldconfig_get_buffer_interval
+ * @see worldconfig_get_pool_interval
+ *
+ * @var World::start
+ * Function Pointer to the World's start function. This function is called
+ * when the World is set as the Active World in the world.
+ * This should be used to set the Starting States of concurrent GameObjects
+ * or finish up any buisness in init.
+ * @see world_set_active
+ *
+ * @var World::loop
+ * Function Pointer to the World's loop function. This function is called
+ * every Fixed Update, when the World is set as the Active World in world.
+ * @see world_set_active
+ *
+ * @var World::close
+ * Function Pointer to the World's close function. This function is called
+ * when this World was the active one, until the active world changed in
+ * world.
+ * @see world_set_active
+ *
+*/
 typedef struct World {
-    // GameObject** objects; // Dynamic Array of Pointers to GameObjects.
-    // int objectsCount; // Amount of Objects present in Objects Array.
-    // int objectsSize; // Current Size of Objects Array.
-    GameObject static_objects[WORLD_CONFIG_STATIC_ALLOC];
-    
+	struct WorldConfig* config;
+	void (*init)();
+	void (*start)();
+	void (*loop)();
+	void (*close)();
 } World;
 
+/// @brief Reallocate the Object Pool.
+/// @param newSize
+/// @return Success of Reallocation.
+/// @warning
+bool world_realloc_pool(size_t newSize);
 
-// // Initializes the World
-// int world_init(struct World*);
+/// @brief Nullifies Objects within the Interval of the Object Buffer.
+/// @param interval
+/// @return Success of the operation.
+bool world_remove_from_buffer(struct Interval* interval);
 
-// // Add a GameObject to the world-> objects dynamic array, handles errors.
-// int world_insert_object(struct World* self, struct GameObject* objectptr);
+/// @brief Nullifies Objects within the Interval of the Object Pool.
+/// @param interval
+/// @return Success of the operation.
+bool world_remove_from_pool(struct Interval* interval);
 
-// // Update all GameObject Bodies, should be run every Tick at a fixed update rate.
-// void world_update_physics(struct World* self);
+/// @brief Get the Interval of Active Game Objects on the Buffer.
+struct Interval* world_get_buffer_interval();
 
-// // Allocates a GameObject, calls world_insert_object automatically.
-// // Sets passed in Pointer value.
-// // Returns 0: Allocation Failure, 1: Allocation Successful
-// int world_create_object(struct World* self, struct GameObject** objectptr);
+/// @brief Get the Interval of Active Game Objects on the Pool.
+struct Interval* world_get_pool_interval();
 
-// // Deallocates a GameObject, and removes it from the Dynamic Array.
-// // Doesn't automatically reallocate the Array, if you want to deallocate memory use @reallocate_objects function.
-// // param worldIndex should be provided from the GameObject you want to destroy.
-// // GameObjects store their index in the array so we can get efficient O(1) removals, with minimal memory overhead.
-// int world_destroy_object(struct World* self, int worldIndex);
+/// @brief Set the Interval of Active Game Objects on the Buffer.
+/// @param interval
+/// @return Validity of operation.
+/// @warning Will not stop you from making NULL GameObjects active.
+bool world_set_buffer_interval(struct Interval* interval);
 
-// // Reallocates Objects array, this allows for users of the Engine to optimize themselves selves without relying on automatic reallocations.
-// // It is recommended to do this whenever adding or removing inconsistant or large amounts of data at a time.
-// // You should change objectsSize and reallocationRatio based on your game's needs.
-// int world_reallocate_objects(struct World* self);
+/// @brief Set the Interval of Active Game Objects on the Pool.
+/// @param interval
+/// @return Validity of operation.
+/// @warning Will not stop you from making NULL GameObjects active.
+bool world_set_pool_interval(struct Interval* interval);
 
-// // Free all World resources.
-// void world_deallocate(struct World* self);
+/// @brief Initialize the world with a new World.
+/// @param world World to set as Active, loads the worldconfig, and setups necessary changes.
+void world_load(struct World* world);
+
+/// @brief Returns the Pointer to the GameObject on the Buffer at that Index.
+/// @param index on buffer.
+struct GameObject* world_buffer_get_object(size_t index);
+
+/// @brief Returns the Pointer to the GameObject on the Pool at that Index.
+/// @param index in pool.
+struct GameObject* world_pool_get_object(size_t index);
+
+/// @brief Set the Deallocation function for World Resources.
+/// Users of the Engine should use this function to deallocate any memory
+/// from their project. This function will be called by the Engine when the app
+/// closes.
+/// @param free_func Function Ptr.
+void world_set_free_function(void (*free_func)());
+
+/// @brief Using the Deallocation function provided, this will release the
+/// resources of the worlds.
+/// @see world_set_free_function
+/// @note this Function will deallocate the Object Pool, all you need to
+/// think about is deallocating your own code's resources.
+void world_free();
 
 #endif // WORLD_H

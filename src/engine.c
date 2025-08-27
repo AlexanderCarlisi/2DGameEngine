@@ -4,14 +4,12 @@
 #include "render.h"
 #include "world.h"
 #include "color.h"
-#include "stdbool.h"
 #include "app_config.h"
 
 static bool is_running = false;
 static float accumulator = 0.0f;
 static float last_time = 0.0f;
 static Renderer* renderer;
-static World world;
 static float* fixed_timestep;
 
 
@@ -20,12 +18,6 @@ void engine_start(struct Renderer* render) {
     is_running = true;
     renderer = render;
     renderer->init(renderer);
-
-    if (world_init(&world) == 0) {
-        printf("\nengine_start(): World Init failure. \n");
-        return;
-    }
-
     printf("Engine Initialized\n");
 }
 
@@ -40,14 +32,14 @@ void engine_tick() {
     // Fixed Update
     while (accumulator >= *fixed_timestep) {
         // Update Game Logic
-        world_update_physics(&world);
+        // world_update_physics(&world);
         accumulator -= *fixed_timestep;
     }
 
     // Variable Update
     float alpha = accumulator / *fixed_timestep;
     renderer->clear(renderer, rgba(255, 255, 0, 255));
-    renderer->draw(renderer, alpha, world.objects, world.objectsCount);
+    renderer->draw(renderer, alpha);
     renderer->display(renderer);
     // printf("Engine Tick\n");
 }
@@ -55,7 +47,7 @@ void engine_tick() {
 
 void engine_close() {
     // Clear Resources
-    world_deallocate(&world);
+	world_free();
     renderer->release_resources(renderer);
 }
 
@@ -68,12 +60,6 @@ void set_engine_state(bool isRunning) {
 bool engine_is_running() {
     return is_running;
 }
-
-
-struct World* engine_get_world_ptr() {
-    return &world;
-}
-
 
 void engine_update_renderer_aspects() {
     renderer->set_aspects(renderer);

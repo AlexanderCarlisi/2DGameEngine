@@ -4,12 +4,12 @@
 DEFINE_VECTOR(CollisionBoxVector, vector_collision_box, struct CollisionBox)
 
 
-// // TODO: [?] If this becomes a reoccuring pattern, add it to vector.h
-// CollisionBoxVector create_empty_collision_box_vector(size_t size) {
-//     CollisionBoxVector cbv;
-//     vector_collision_box_init(&cbv, size);
-//     return cbv;
-// }
+// TODO: [?] If this becomes a reoccuring pattern, add it to vector.h
+CollisionBoxVector create_empty_collision_box_vector(size_t size) {
+    CollisionBoxVector cbv;
+    vector_collision_box_init(&cbv, size);
+    return cbv;
+}
 
 
 void gameobject_init(struct GameObject* obj, struct GameObjectConfig* config) {

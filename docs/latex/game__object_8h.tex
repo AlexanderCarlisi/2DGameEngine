@@ -1,0 +1,100 @@
+\doxysection{include/game\+\_\+object.h File Reference}
+\hypertarget{game__object_8h}{}\label{game__object_8h}\index{include/game\_object.h@{include/game\_object.h}}
+{\ttfamily \#include "{}collision\+\_\+box.\+h"{}}\newline
+Include dependency graph for game\+\_\+object.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{game__object_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game__object_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structGameObject}{Game\+Object}}
+\item 
+struct \mbox{\hyperlink{structGameObjectConfig}{Game\+Object\+Config}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{game__object_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type}} \mbox{\hyperlink{game__object_8h_a06ae4e2ed34533f72218e1207aa28f18}{Object\+Type}}
+\item 
+typedef struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \mbox{\hyperlink{game__object_8h_ab0fb707a835e2853e4ab457d743d9640}{Game\+Object}}
+\item 
+typedef struct \mbox{\hyperlink{structGameObjectConfig}{Game\+Object\+Config}} \mbox{\hyperlink{game__object_8h_a2f5c042c8f62864ef6c770513b5b6a78}{Game\+Object\+Config}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{game__object_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type}} \{ \mbox{\hyperlink{game__object_8h_a842c5e2e69277690b064bf363c017980ae55a36a850c67d46b3b3325de7fce0b8}{STATIC}}
+, \mbox{\hyperlink{game__object_8h_a842c5e2e69277690b064bf363c017980aaac65e0072e6ff1f4c3209d2fdd8730a}{DYNAMIC}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{game__object_8h_a5326a6199deb5693e9b5b096759c4736}{gameobject\+\_\+init}} (struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}obj, struct \mbox{\hyperlink{structGameObjectConfig}{Game\+Object\+Config}} \texorpdfstring{$\ast$}{*}config)
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{structGameObject}{Game\+Object} with the provided Config. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{game__object_8h_ab0fb707a835e2853e4ab457d743d9640}\label{game__object_8h_ab0fb707a835e2853e4ab457d743d9640} 
+\index{game\_object.h@{game\_object.h}!GameObject@{GameObject}}
+\index{GameObject@{GameObject}!game\_object.h@{game\_object.h}}
+\doxysubsubsection{\texorpdfstring{GameObject}{GameObject}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \mbox{\hyperlink{structGameObject}{Game\+Object}}}
+
+\Hypertarget{game__object_8h_a2f5c042c8f62864ef6c770513b5b6a78}\label{game__object_8h_a2f5c042c8f62864ef6c770513b5b6a78} 
+\index{game\_object.h@{game\_object.h}!GameObjectConfig@{GameObjectConfig}}
+\index{GameObjectConfig@{GameObjectConfig}!game\_object.h@{game\_object.h}}
+\doxysubsubsection{\texorpdfstring{GameObjectConfig}{GameObjectConfig}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structGameObjectConfig}{Game\+Object\+Config}} \mbox{\hyperlink{structGameObjectConfig}{Game\+Object\+Config}}}
+
+\Hypertarget{game__object_8h_a06ae4e2ed34533f72218e1207aa28f18}\label{game__object_8h_a06ae4e2ed34533f72218e1207aa28f18} 
+\index{game\_object.h@{game\_object.h}!ObjectType@{ObjectType}}
+\index{ObjectType@{ObjectType}!game\_object.h@{game\_object.h}}
+\doxysubsubsection{\texorpdfstring{ObjectType}{ObjectType}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{game__object_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type}} \mbox{\hyperlink{game__object_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{game__object_8h_a842c5e2e69277690b064bf363c017980}\label{game__object_8h_a842c5e2e69277690b064bf363c017980} 
+\index{game\_object.h@{game\_object.h}!ObjectType@{ObjectType}}
+\index{ObjectType@{ObjectType}!game\_object.h@{game\_object.h}}
+\doxysubsubsection{\texorpdfstring{ObjectType}{ObjectType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{game__object_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STATIC@{STATIC}!game\_object.h@{game\_object.h}}\index{game\_object.h@{game\_object.h}!STATIC@{STATIC}}}\Hypertarget{game__object_8h_a842c5e2e69277690b064bf363c017980ae55a36a850c67d46b3b3325de7fce0b8}\label{game__object_8h_a842c5e2e69277690b064bf363c017980ae55a36a850c67d46b3b3325de7fce0b8} 
+STATIC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DYNAMIC@{DYNAMIC}!game\_object.h@{game\_object.h}}\index{game\_object.h@{game\_object.h}!DYNAMIC@{DYNAMIC}}}\Hypertarget{game__object_8h_a842c5e2e69277690b064bf363c017980aaac65e0072e6ff1f4c3209d2fdd8730a}\label{game__object_8h_a842c5e2e69277690b064bf363c017980aaac65e0072e6ff1f4c3209d2fdd8730a} 
+DYNAMIC&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{game__object_8h_a5326a6199deb5693e9b5b096759c4736}\label{game__object_8h_a5326a6199deb5693e9b5b096759c4736} 
+\index{game\_object.h@{game\_object.h}!gameobject\_init@{gameobject\_init}}
+\index{gameobject\_init@{gameobject\_init}!game\_object.h@{game\_object.h}}
+\doxysubsubsection{\texorpdfstring{gameobject\_init()}{gameobject\_init()}}
+{\footnotesize\ttfamily void gameobject\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}}]{obj,  }\item[{struct \mbox{\hyperlink{structGameObjectConfig}{Game\+Object\+Config}} \texorpdfstring{$\ast$}{*}}]{config }\end{DoxyParamCaption})}
+
+
+
+Initializes the \doxylink{structGameObject}{Game\+Object} with the provided Config. 
+

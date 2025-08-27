@@ -1,0 +1,129 @@
+\doxysection{Renderer Struct Reference}
+\hypertarget{structRenderer}{}\label{structRenderer}\index{Renderer@{Renderer}}
+
+
+{\ttfamily \#include $<$render.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_a443cc783e688594138e2af4ad97a2003}{init}} )(struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_ae0020ce7ddbc2f12305cf5eda8925973}{clear}} )(struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self, uint32\+\_\+t color)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_a57bf30f4b50df16b981df26ca8a5c5e9}{draw\+\_\+pixel}} )(struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self, int x, int y, uint32\+\_\+t color)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_acf3832b368a59b8d366bf44e4d6414eb}{interpolate\+\_\+pixel}} )(struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self, int x0, int y0, int x1, int y1, uint32\+\_\+t color, float alpha)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_ae14940cba4685efefd98678cde21925d}{draw\+\_\+shape}} )(struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self, int x, int y, uint32\+\_\+t color, int vertices)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_a2607d24c8049689b97a9fb1c49e1bb32}{draw}} )(struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self, float alpha, struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}objects, int amount\+Of\+Game\+Objects)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_aaa09d8f46dbf1705540038cb74fc4251}{display}} )(struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_aba82f56c4f95c684d8eac5c5d6143862}{release\+\_\+resources}} )(struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_a120d765054870116894e04ca46da87f6}{set\+\_\+aspects}} )(struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self)
+\item 
+uint32\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_abb2e16fd086af7b187d4daed32f6c795}{framebuffer}}
+\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_ae96692aeb912343f91ae164fc34ee22c}{win\+\_\+width}}
+\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_afae6360f2eaff60fb79b0694b7031b81}{win\+\_\+height}}
+\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_a6c60d34bcb031f60c57c599de419dcf9}{res\+\_\+width}}
+\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structRenderer_ab377b5420e2999516dad0c5536aef072}{res\+\_\+height}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structRenderer_ae0020ce7ddbc2f12305cf5eda8925973}\label{structRenderer_ae0020ce7ddbc2f12305cf5eda8925973} 
+\index{Renderer@{Renderer}!clear@{clear}}
+\index{clear@{clear}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{clear}{clear}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Renderer\+::clear) (struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self, uint32\+\_\+t color)}
+
+\Hypertarget{structRenderer_aaa09d8f46dbf1705540038cb74fc4251}\label{structRenderer_aaa09d8f46dbf1705540038cb74fc4251} 
+\index{Renderer@{Renderer}!display@{display}}
+\index{display@{display}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{display}{display}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Renderer\+::display) (struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self)}
+
+\Hypertarget{structRenderer_a2607d24c8049689b97a9fb1c49e1bb32}\label{structRenderer_a2607d24c8049689b97a9fb1c49e1bb32} 
+\index{Renderer@{Renderer}!draw@{draw}}
+\index{draw@{draw}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{draw}{draw}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Renderer\+::draw) (struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self, float alpha, struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}objects, int amount\+Of\+Game\+Objects)}
+
+\Hypertarget{structRenderer_a57bf30f4b50df16b981df26ca8a5c5e9}\label{structRenderer_a57bf30f4b50df16b981df26ca8a5c5e9} 
+\index{Renderer@{Renderer}!draw\_pixel@{draw\_pixel}}
+\index{draw\_pixel@{draw\_pixel}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{draw\_pixel}{draw\_pixel}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Renderer\+::draw\+\_\+pixel) (struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self, int x, int y, uint32\+\_\+t color)}
+
+\Hypertarget{structRenderer_ae14940cba4685efefd98678cde21925d}\label{structRenderer_ae14940cba4685efefd98678cde21925d} 
+\index{Renderer@{Renderer}!draw\_shape@{draw\_shape}}
+\index{draw\_shape@{draw\_shape}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{draw\_shape}{draw\_shape}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Renderer\+::draw\+\_\+shape) (struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self, int x, int y, uint32\+\_\+t color, int vertices)}
+
+\Hypertarget{structRenderer_abb2e16fd086af7b187d4daed32f6c795}\label{structRenderer_abb2e16fd086af7b187d4daed32f6c795} 
+\index{Renderer@{Renderer}!framebuffer@{framebuffer}}
+\index{framebuffer@{framebuffer}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{framebuffer}{framebuffer}}
+{\footnotesize\ttfamily uint32\+\_\+t\texorpdfstring{$\ast$}{*} Renderer\+::framebuffer}
+
+\Hypertarget{structRenderer_a443cc783e688594138e2af4ad97a2003}\label{structRenderer_a443cc783e688594138e2af4ad97a2003} 
+\index{Renderer@{Renderer}!init@{init}}
+\index{init@{init}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{init}{init}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Renderer\+::init) (struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self)}
+
+\Hypertarget{structRenderer_acf3832b368a59b8d366bf44e4d6414eb}\label{structRenderer_acf3832b368a59b8d366bf44e4d6414eb} 
+\index{Renderer@{Renderer}!interpolate\_pixel@{interpolate\_pixel}}
+\index{interpolate\_pixel@{interpolate\_pixel}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{interpolate\_pixel}{interpolate\_pixel}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Renderer\+::interpolate\+\_\+pixel) (struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self, int x0, int y0, int x1, int y1, uint32\+\_\+t color, float alpha)}
+
+\Hypertarget{structRenderer_aba82f56c4f95c684d8eac5c5d6143862}\label{structRenderer_aba82f56c4f95c684d8eac5c5d6143862} 
+\index{Renderer@{Renderer}!release\_resources@{release\_resources}}
+\index{release\_resources@{release\_resources}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{release\_resources}{release\_resources}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Renderer\+::release\+\_\+resources) (struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self)}
+
+\Hypertarget{structRenderer_ab377b5420e2999516dad0c5536aef072}\label{structRenderer_ab377b5420e2999516dad0c5536aef072} 
+\index{Renderer@{Renderer}!res\_height@{res\_height}}
+\index{res\_height@{res\_height}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{res\_height}{res\_height}}
+{\footnotesize\ttfamily int\texorpdfstring{$\ast$}{*} Renderer\+::res\+\_\+height}
+
+\Hypertarget{structRenderer_a6c60d34bcb031f60c57c599de419dcf9}\label{structRenderer_a6c60d34bcb031f60c57c599de419dcf9} 
+\index{Renderer@{Renderer}!res\_width@{res\_width}}
+\index{res\_width@{res\_width}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{res\_width}{res\_width}}
+{\footnotesize\ttfamily int\texorpdfstring{$\ast$}{*} Renderer\+::res\+\_\+width}
+
+\Hypertarget{structRenderer_a120d765054870116894e04ca46da87f6}\label{structRenderer_a120d765054870116894e04ca46da87f6} 
+\index{Renderer@{Renderer}!set\_aspects@{set\_aspects}}
+\index{set\_aspects@{set\_aspects}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{set\_aspects}{set\_aspects}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Renderer\+::set\+\_\+aspects) (struct \mbox{\hyperlink{structRenderer}{Renderer}} \texorpdfstring{$\ast$}{*}self)}
+
+\Hypertarget{structRenderer_afae6360f2eaff60fb79b0694b7031b81}\label{structRenderer_afae6360f2eaff60fb79b0694b7031b81} 
+\index{Renderer@{Renderer}!win\_height@{win\_height}}
+\index{win\_height@{win\_height}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{win\_height}{win\_height}}
+{\footnotesize\ttfamily int\texorpdfstring{$\ast$}{*} Renderer\+::win\+\_\+height}
+
+\Hypertarget{structRenderer_ae96692aeb912343f91ae164fc34ee22c}\label{structRenderer_ae96692aeb912343f91ae164fc34ee22c} 
+\index{Renderer@{Renderer}!win\_width@{win\_width}}
+\index{win\_width@{win\_width}!Renderer@{Renderer}}
+\doxysubsubsection{\texorpdfstring{win\_width}{win\_width}}
+{\footnotesize\ttfamily int\texorpdfstring{$\ast$}{*} Renderer\+::win\+\_\+width}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{render_8h}{render.\+h}}\end{DoxyCompactItemize}

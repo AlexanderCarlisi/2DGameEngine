@@ -2,6 +2,7 @@
 #define VECTOR_H
 
 #include "stdlib.h"
+#include <stdbool.h>
 #include <stdio.h>
 
 // Layout: [ptr, size, size, float]
@@ -14,68 +15,70 @@
         float realloc_ratio;\
     } vector_name;\
 \
-    void func_prefix##_init(vector_name* arr, size_t size);\
-    void func_prefix##_free(vector_name* arr);\
-    int func_prefix##_add(vector_name* arr, type item);\
-    int func_prefix##_realloc(vector_name* arr);\
-    int func_prefix##_realloc_set(vector_name* arr, size_t newSize);\
-    void func_prefix##_pop_swap(vector_name* arr, int index);\
+    bool func_prefix##_init(vector_name* arr, size_t size);\
+    bool func_prefix##_free(vector_name* arr);\
+    bool func_prefix##_add(vector_name* arr, type item);\
+    bool func_prefix##_realloc(vector_name* arr);\
+    bool func_prefix##_realloc_set(vector_name* arr, size_t newSize);\
+    bool func_prefix##_pop_swap(vector_name* arr, int index);\
 
 
 #define DEFINE_VECTOR(vector_name, func_prefix, type)\
-    void func_prefix##_init(vector_name* arr, size_t size) {\
+    bool func_prefix##_init(vector_name* arr, size_t size) {\
         arr->count = 0;\
         arr->size = size;\
         arr->realloc_ratio = 2.0f;\
         arr->data = (type*) calloc(arr->size, sizeof(type));\
+		return arr->data != NULL;\
     }\
 \
-    void func_prefix##_free(vector_name* arr) {\
-        free(arr->data);\
+    bool func_prefix##_free(vector_name* arr) {\
+		if (arr->data != NULL) free(arr->data);\
         arr->data = NULL;\
         arr->count = 0;\
         arr->size = 0;\
         arr->realloc_ratio = 0;\
+		return arr->data == NULL;\
     }\
 \
-    int func_prefix##_realloc(vector_name* arr) {\
+    bool func_prefix##_realloc(vector_name* arr) {\
         arr->size *= arr->realloc_ratio;\
         type* reallocated = (type*) realloc(arr->data, arr->size * sizeof(type));\
         if (reallocated == NULL) {\
             printf("\n>>> Reallocation Failure <<<\n");\
-            return 0;\
+            return false;\
         }\
         arr->data = reallocated;\
-        return 1;\
+        return true;\
     }\
 \
-    int func_prefix##_realloc_set(vector_name* arr, size_t newSize) {\
+    bool func_prefix##_realloc_set(vector_name* arr, size_t newSize) {\
         arr->size = newSize;\
         type* reallocated = (type*) realloc(arr->data, arr->size * sizeof(type));\
         if (reallocated == NULL) {\
             printf("\n>>> Reallocation Failure <<<\n");\
-            return 0;\
+            return false;\
         }\
         arr->data = reallocated;\
-        return 1;\
+        return true;\
     }\
 \
-    int func_prefix##_add(vector_name* arr, type item) {\
+    bool func_prefix##_add(vector_name* arr, type item) {\
         arr->count++;\
         if (arr->count > arr->size) {\
             if(!func_prefix##_realloc(arr)) {\
                 printf("\n>>> Add Failure, due to Reallocation Failure. <<<\n");\
-                return 0;\
+                return false;\
             }\
         }\
         arr->data[arr->count - 1] = item;\
-        return 1;\
+        return true;\
     }\
 \
-    void func_prefix##_pop_swap(vector_name* arr, int index) {\
+    bool func_prefix##_pop_swap(vector_name* arr, int index) {\
         if (index < 0 || index >= arr->count) {\
             printf("\n>>> Pop-Swap Failure <<<\n...Index out of Bounds...");\
-            return;\
+            return false;\
         }\
 \
         type pop = arr->data[index];\
@@ -86,6 +89,7 @@
             arr->data[index] = swap;\
         }\
         arr->count--;\
+		return true;\
     }\
 
 

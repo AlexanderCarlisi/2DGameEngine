@@ -164,9 +164,9 @@ struct VertexVector shape_create_vertices(int vertices) {
         float theta = (2.0f * SHAPE_PI * i) / vertices;
         float x = (cos(theta) + 1.0f) / 2.0f;
         float y = (sin(theta) + 1.0f) / 2.0f;
-        vector_vertex_add(&vv, (struct Vector) {x, y});
+        vector_vertex_add(&vv, (struct Vertex) {x, y});
     }
-    return vertices;
+    return vv;
 }
 
 

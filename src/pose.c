@@ -1,22 +1,22 @@
 #include "pose.h"
-#include "world.h"
+#include "world_config.h"
 
-// TODO: World_config
-
-void update_pose_meters(struct Pose* pose, float xMeters, float yMeters) {
-    pose->xMeters = xMeters;
-    pose->yMeters = yMeters;
-    // pose->xPixels = xMeters * world->pixelsPerMeter;
-    // pose->yPixels = yMeters * world->pixelsPerMeter;
+void pose_update_meters(struct Pose* pose, float xMeters, float yMeters) {
+	float ppm = worldconfig_get_ppm();
+	pose->x_meters = xMeters;
+	pose->y_meters = yMeters;
+	pose->x_pixels = xMeters * ppm;
+	pose->y_pixels = yMeters * ppm;
 }
 
-void update_pose_pixels(struct Pose* pose, int xPixels, int yPixels) {
-    pose->xPixels = xPixels;
-    pose->yPixels = yPixels;
-    // pose->xMeters = xPixels / world->pixelsPerMeter;
-    // pose->yMeters = yPixels / world->pixelsPerMeter;
+void pose_update_pixels(struct Pose* pose, float xPixels, float yPixels) {
+	float ppm = worldconfig_get_ppm();
+	pose->x_meters = xPixels / ppm;
+	pose->y_meters = yPixels / ppm;
+	pose->x_pixels = xPixels;
+	pose->y_pixels = yPixels;
 }
 
 bool pose_equals(struct Pose* pose1, struct Pose* pose2) {
-    return pose1->xMeters == pose2->xMeters && pose1->yMeters == pose2->yMeters;
+	return pose1->x_meters == pose2->x_meters && pose1->y_meters == pose2->y_meters;
 }

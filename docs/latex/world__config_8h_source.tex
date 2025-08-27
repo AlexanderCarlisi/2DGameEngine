@@ -1,0 +1,56 @@
+\doxysection{world\+\_\+config.\+h}
+\hypertarget{world__config_8h_source}{}\label{world__config_8h_source}\index{include/world\_config.h@{include/world\_config.h}}
+\mbox{\hyperlink{world__config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ WORLD\_CONFIG\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ WORLD\_CONFIG\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ WORLD\_CONFIG\_OBJECT\_BUFFER\_SIZE\ 100}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structInterval}{Interval}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structInterval_a165fc98b82c980d8ae885c07e30fbba1}{start}};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structInterval_ad364452d2207c9102f838c44d12abaa7}{end}};}
+\DoxyCodeLine{00019\ \}\ \mbox{\hyperlink{structInterval}{Interval}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structWorldConfig}{WorldConfig}}\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structInterval}{Interval}}\ \mbox{\hyperlink{structWorldConfig_a6ae0fa7b5fa38da0340d7a8e30cd16ae}{buffer\_interval}};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structInterval}{Interval}}\ \mbox{\hyperlink{structWorldConfig_aa76b3613528708eed7ea9f9bf6806c6e}{pool\_interval}};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structWorldConfig_aac7ebcb8035125b85413a9040181ab16}{pool\_size}};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structWorldConfig_a4e90a83f4277d8f5c88eec069bce92ba}{reallocation\_ratio}};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structWorldConfig_a7a6ef532265f05b0855eab3ffa1b3681}{pixels\_per\_meter}};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structWorldConfig_af33dc154c47f34ca089746a0e9dce52c}{gravity\_field}};}
+\DoxyCodeLine{00053\ \}\ \mbox{\hyperlink{structWorldConfig}{WorldConfig}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structWorldConfig}{WorldConfig}}*\ \mbox{\hyperlink{world__config_8h_ac4503aeed176c47445f09d462ec00733}{worldconfig\_get}}();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structInterval}{Interval}}\ \mbox{\hyperlink{world__config_8h_abbdc2089326b10d83bf398145f3f8bcc}{worldconfig\_get\_buffer\_interval}}();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structInterval}{Interval}}\ \mbox{\hyperlink{world__config_8h_ab9b80b1db58210738417f33f03e64f6a}{worldconfig\_get\_pool\_interval}}();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{size\_t}*\ \mbox{\hyperlink{world__config_8h_a7ce337357c6dd188475e44f8078e40e0}{worldconfig\_get\_pool\_size\_ptr}}();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00070\ \textcolor{keywordtype}{float}*\ \mbox{\hyperlink{world__config_8h_a8412a3edc64ed9e2632f59c6ad50ce3c}{worldconfig\_get\_realloc\_ptr}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{float}*\ \mbox{\hyperlink{world__config_8h_a1a8cb15edca3f6bd147bf1556af5179c}{worldconfig\_get\_ppm\_ptr}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{float}*\ \mbox{\hyperlink{world__config_8h_abe3e7dc965c211ce6707393e12985cf5}{worldconfig\_get\_gf\_ptr}}();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00080\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{world__config_8h_a161abcd4fe171159c0c08a6bf24666aa}{worldconfig\_set\_pool\_size}}(\textcolor{keywordtype}{size\_t}\ poolSize);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{world__config_8h_a386ce6d7120d542ede1db24a09a2a967}{worldconfig\_set\_realloc}}(\textcolor{keywordtype}{float}\ reallocRatio);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{world__config_8h_a64ed94de7d0ea5f1bd7dea616f4ce544}{worldconfig\_set\_ppm}}(\textcolor{keywordtype}{float}\ pixelsPerMeter);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{world__config_8h_a457d22a5476710ab87ee7f8d0635512a}{worldconfig\_set\_gf}}(\textcolor{keywordtype}{float}\ gravityField);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{world__config_8h_ac16e923dafb182baa6eba5b9e64b11f3}{worldconfig\_set}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structWorldConfig}{WorldConfig}}*\ worldConfig);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WORLD\_CONFIG\_H}}
+
+\end{DoxyCode}

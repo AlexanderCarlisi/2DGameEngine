@@ -1,0 +1,56 @@
+\doxysection{app\+\_\+config.\+h}
+\hypertarget{app__config_8h_source}{}\label{app__config_8h_source}\index{include/app\_config.h@{include/app\_config.h}}
+\mbox{\hyperlink{app__config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ APP\_CONFIG\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ APP\_CONFIG\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ MAX\_WINDOW\_NAME\_LENGTH\ 256\ \ \ \ }\textcolor{comment}{//\ Should\ be\ max\ Window\ Name\ length\ for\ Windows\ and\ Unix,\ needs\ to\ be\ tested.}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Structure\ representing\ a\ pixel\ by\ pixel\ size.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Values\ in\ Pixels.\ \{width,\ height\}}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAspect}{Aspect}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structAspect_a963e0e7a708c9e696b3f80c8fb35d1aa}{width}};}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structAspect_a206a3b2db2d16ee0a35f80949f399a3b}{height}};}
+\DoxyCodeLine{00012\ \}\ \mbox{\hyperlink{structAspect}{Aspect}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Application\ Configuration}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Information\ like\ the\ Window\ Name,\ Window\ size}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ as\ well\ as\ Rendering\ information\ like\ the\ Aspect,\ Framerate.}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structApplicationConfig}{ApplicationConfig}}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structApplicationConfig_a28f04f7548cb7db82380f81aedd62042}{window\_name}}[\mbox{\hyperlink{app__config_8h_a1a9de8c622827269bc1c101f8096bd53}{MAX\_WINDOW\_NAME\_LENGTH}}];}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAspect}{Aspect}}\ \mbox{\hyperlink{structApplicationConfig_afa7cb9b30caf012142505f327a823e96}{window\_aspect}};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAspect}{Aspect}}\ \mbox{\hyperlink{structApplicationConfig_ade1f2baf0447cc163c16a42f00346d31}{render\_aspect}};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structApplicationConfig_a8896553be1205afdcf37c9de66be3448}{frames\_per\_second}};}
+\DoxyCodeLine{00023\ \}\ \mbox{\hyperlink{structApplicationConfig}{ApplicationConfig}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structApplicationConfig}{ApplicationConfig}}*\ \mbox{\hyperlink{app__config_8h_aac4d8359ba042ef8043c2a0a1dfd2613}{appconfig\_get}}();}
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{app__config_8h_acc990bf2b60648541028f5cc6f26bd9a}{appconfig\_get\_name}}();}
+\DoxyCodeLine{00032\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAspect}{Aspect}}*\ \mbox{\hyperlink{app__config_8h_a8b5f1de0608258b3d466a20368acff78}{appconfig\_get\_window\_size}}();}
+\DoxyCodeLine{00033\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAspect}{Aspect}}*\ \mbox{\hyperlink{app__config_8h_ab30a39292702ee3f24963ed25f1d35a5}{appconfig\_get\_resolution}}();}
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{float}*\ \mbox{\hyperlink{app__config_8h_ac9b7558807c1b01764f2034c64ecf746}{appconfig\_get\_fps}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__config_8h_a94b177bd28a473bf4c75d00489187ed7}{appconfig\_platform\_resized\_window}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structAspect}{Aspect}}\ aspect);}
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__config_8h_ac72993399d825c8af1e49e673c461329}{appconfig\_platform\_resized\_window\_px}}(\textcolor{keywordtype}{int}\ pxWidth,\ \textcolor{keywordtype}{int}\ pxHeight);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__config_8h_ae1cfeffd2fed0d3dd14ccf1662f756d2}{appconfig\_set}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structApplicationConfig}{ApplicationConfig}}*\ config);}
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__config_8h_a7e4729b8012c52e167c3f9c6e448091c}{appconfig\_set\_name}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name);}
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__config_8h_ad24b84f76148a62ce0acca8b80fc58d6}{appconfig\_set\_window\_size}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structAspect}{Aspect}}\ aspect);}
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__config_8h_a25908f2612e13fde45d94b74425d6c78}{appconfig\_set\_window\_size\_px}}(\textcolor{keywordtype}{int}\ pxWidth,\ \textcolor{keywordtype}{int}\ pxHeight);}
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__config_8h_aa32966ef5e34c432ff055bddb0c6fb5f}{appconfig\_set\_resolution}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structAspect}{Aspect}}\ aspect);}
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__config_8h_a87280061e998a36395d542c1bbc12354}{appconfig\_set\_resolution\_px}}(\textcolor{keywordtype}{int}\ pxWidth,\ \textcolor{keywordtype}{int}\ pxHeight);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{app__config_8h_a6a6540922c8c73b462050c80aeaf6d8e}{appconfig\_init}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structApplicationConfig}{ApplicationConfig}}*\ config);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ APP\_CONFIG\_H}}
+
+\end{DoxyCode}

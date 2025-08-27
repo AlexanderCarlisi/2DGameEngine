@@ -1,0 +1,43 @@
+\doxysection{src/collision\+\_\+box.c File Reference}
+\hypertarget{collision__box_8c}{}\label{collision__box_8c}\index{src/collision\_box.c@{src/collision\_box.c}}
+{\ttfamily \#include "{}collision\+\_\+box.\+h"{}}\newline
+{\ttfamily \#include "{}color.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for collision\+\_\+box.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{collision__box_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{collision__box_8c_a5ecadc88d4c4e45cd7f057b9866c2be8}{debug\+\_\+collision\+\_\+enter\+\_\+function}} (struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}collided\+Object)
+\item 
+void \mbox{\hyperlink{collision__box_8c_a7cbb9cab14ec44f8af0769058f5d0260}{debug\+\_\+collision\+\_\+exit\+\_\+function}} (struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}self, struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}collided\+Object)
+\item 
+\mbox{\hyperlink{structCollisionBox}{Collision\+Box}} \mbox{\hyperlink{collision__box_8c_a92e9df6fbad82605d70d3bb7a1e2bd95}{collision\+\_\+box\+\_\+create\+\_\+debug}} (uint32\+\_\+t debug\+Color, uint32\+\_\+t shape\+Color, struct \mbox{\hyperlink{structPose}{Pose}} shape\+Size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{collision__box_8c_a92e9df6fbad82605d70d3bb7a1e2bd95}\label{collision__box_8c_a92e9df6fbad82605d70d3bb7a1e2bd95} 
+\index{collision\_box.c@{collision\_box.c}!collision\_box\_create\_debug@{collision\_box\_create\_debug}}
+\index{collision\_box\_create\_debug@{collision\_box\_create\_debug}!collision\_box.c@{collision\_box.c}}
+\doxysubsubsection{\texorpdfstring{collision\_box\_create\_debug()}{collision\_box\_create\_debug()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCollisionBox}{Collision\+Box}} collision\+\_\+box\+\_\+create\+\_\+debug (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{debug\+Color,  }\item[{uint32\+\_\+t}]{shape\+Color,  }\item[{struct \mbox{\hyperlink{structPose}{Pose}}}]{shape\+Size }\end{DoxyParamCaption})}
+
+\Hypertarget{collision__box_8c_a5ecadc88d4c4e45cd7f057b9866c2be8}\label{collision__box_8c_a5ecadc88d4c4e45cd7f057b9866c2be8} 
+\index{collision\_box.c@{collision\_box.c}!debug\_collision\_enter\_function@{debug\_collision\_enter\_function}}
+\index{debug\_collision\_enter\_function@{debug\_collision\_enter\_function}!collision\_box.c@{collision\_box.c}}
+\doxysubsubsection{\texorpdfstring{debug\_collision\_enter\_function()}{debug\_collision\_enter\_function()}}
+{\footnotesize\ttfamily void debug\+\_\+collision\+\_\+enter\+\_\+function (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}}]{self,  }\item[{struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}}]{collided\+Object }\end{DoxyParamCaption})}
+
+\Hypertarget{collision__box_8c_a7cbb9cab14ec44f8af0769058f5d0260}\label{collision__box_8c_a7cbb9cab14ec44f8af0769058f5d0260} 
+\index{collision\_box.c@{collision\_box.c}!debug\_collision\_exit\_function@{debug\_collision\_exit\_function}}
+\index{debug\_collision\_exit\_function@{debug\_collision\_exit\_function}!collision\_box.c@{collision\_box.c}}
+\doxysubsubsection{\texorpdfstring{debug\_collision\_exit\_function()}{debug\_collision\_exit\_function()}}
+{\footnotesize\ttfamily void debug\+\_\+collision\+\_\+exit\+\_\+function (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}}]{self,  }\item[{struct \mbox{\hyperlink{structGameObject}{Game\+Object}} \texorpdfstring{$\ast$}{*}}]{collided\+Object }\end{DoxyParamCaption})}
+

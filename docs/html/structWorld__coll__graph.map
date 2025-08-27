@@ -1,0 +1,7 @@
+<map id="World" name="World">
+<area shape="rect" id="Node000001" title=" " alt="" coords="26,196,85,221"/>
+<area shape="rect" id="Node000002" href="$structWorldConfig.html" title="Settings and Information on a World and it&#39;s data." alt="" coords="5,108,105,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,147,58,195,53,195,53,147"/>
+<area shape="rect" id="Node000003" href="$structInterval.html" title="An inclusive interval, generally used for Buffers and Pools. Layout: [size_t, size_t] Size: 16,..." alt="" coords="19,5,91,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="58,45,58,108,53,108,53,45"/>
+</map>

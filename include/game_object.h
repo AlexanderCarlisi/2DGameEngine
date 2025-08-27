@@ -60,8 +60,8 @@ typedef struct GameObjectConfig {
 } GameObjectConfig;
 
 
-// /// @brief Creates and Initializes an empty collision box vector.
-// CollisionBoxVector create_empty_collision_box_vector(size_t size);
+/// @brief Creates and Initializes an empty collision box vector.
+CollisionBoxVector create_empty_collision_box_vector(size_t size);
 
 /// @brief Initializes the GameObject with the provided Config.
 void gameobject_init(struct GameObject* obj, struct GameObjectConfig* config);

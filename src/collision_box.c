@@ -11,5 +11,5 @@ CollisionBox collision_box_create_debug(uint32_t debugColor, uint32_t shapeColor
         .on_collision_enter = debug_collision_enter_function,
         .on_collision_exit = debug_collision_exit_function,
         .shape = shape_create_box(shapeSize, shapeColor)
-    }
+    };
 }

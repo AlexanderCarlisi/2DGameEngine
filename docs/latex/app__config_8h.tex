@@ -1,0 +1,181 @@
+\doxysection{include/app\+\_\+config.h File Reference}
+\hypertarget{app__config_8h}{}\label{app__config_8h}\index{include/app\_config.h@{include/app\_config.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{app__config_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structAspect}{Aspect}}
+\item 
+struct \mbox{\hyperlink{structApplicationConfig}{Application\+Config}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{app__config_8h_a1a9de8c622827269bc1c101f8096bd53}{MAX\+\_\+\+WINDOW\+\_\+\+NAME\+\_\+\+LENGTH}}~256
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structAspect}{Aspect}} \mbox{\hyperlink{app__config_8h_ac5dd0e56809b21a4edcabb0003955c3b}{Aspect}}
+\item 
+typedef struct \mbox{\hyperlink{structApplicationConfig}{Application\+Config}} \mbox{\hyperlink{app__config_8h_aa019242a3126f47d77df61cb5d82638a}{Application\+Config}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structApplicationConfig}{Application\+Config}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{app__config_8h_aac4d8359ba042ef8043c2a0a1dfd2613}{appconfig\+\_\+get}} ()
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{app__config_8h_acc990bf2b60648541028f5cc6f26bd9a}{appconfig\+\_\+get\+\_\+name}} ()
+\item 
+struct \mbox{\hyperlink{structAspect}{Aspect}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{app__config_8h_a8b5f1de0608258b3d466a20368acff78}{appconfig\+\_\+get\+\_\+window\+\_\+size}} ()
+\item 
+struct \mbox{\hyperlink{structAspect}{Aspect}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{app__config_8h_ab30a39292702ee3f24963ed25f1d35a5}{appconfig\+\_\+get\+\_\+resolution}} ()
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{app__config_8h_ac9b7558807c1b01764f2034c64ecf746}{appconfig\+\_\+get\+\_\+fps}} ()
+\item 
+void \mbox{\hyperlink{app__config_8h_a94b177bd28a473bf4c75d00489187ed7}{appconfig\+\_\+platform\+\_\+resized\+\_\+window}} (struct \mbox{\hyperlink{structAspect}{Aspect}} aspect)
+\item 
+void \mbox{\hyperlink{app__config_8h_ac72993399d825c8af1e49e673c461329}{appconfig\+\_\+platform\+\_\+resized\+\_\+window\+\_\+px}} (int px\+Width, int px\+Height)
+\item 
+void \mbox{\hyperlink{app__config_8h_ae1cfeffd2fed0d3dd14ccf1662f756d2}{appconfig\+\_\+set}} (struct \mbox{\hyperlink{structApplicationConfig}{Application\+Config}} \texorpdfstring{$\ast$}{*}config)
+\item 
+void \mbox{\hyperlink{app__config_8h_a7e4729b8012c52e167c3f9c6e448091c}{appconfig\+\_\+set\+\_\+name}} (const char \texorpdfstring{$\ast$}{*}name)
+\item 
+void \mbox{\hyperlink{app__config_8h_ad24b84f76148a62ce0acca8b80fc58d6}{appconfig\+\_\+set\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structAspect}{Aspect}} aspect)
+\item 
+void \mbox{\hyperlink{app__config_8h_a25908f2612e13fde45d94b74425d6c78}{appconfig\+\_\+set\+\_\+window\+\_\+size\+\_\+px}} (int px\+Width, int px\+Height)
+\item 
+void \mbox{\hyperlink{app__config_8h_aa32966ef5e34c432ff055bddb0c6fb5f}{appconfig\+\_\+set\+\_\+resolution}} (struct \mbox{\hyperlink{structAspect}{Aspect}} aspect)
+\item 
+void \mbox{\hyperlink{app__config_8h_a87280061e998a36395d542c1bbc12354}{appconfig\+\_\+set\+\_\+resolution\+\_\+px}} (int px\+Width, int px\+Height)
+\item 
+void \mbox{\hyperlink{app__config_8h_a6a6540922c8c73b462050c80aeaf6d8e}{appconfig\+\_\+init}} (struct \mbox{\hyperlink{structApplicationConfig}{Application\+Config}} \texorpdfstring{$\ast$}{*}config)
+\begin{DoxyCompactList}\small\item\em Call this in Main. Overwrites the default Configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{app__config_8h_a1a9de8c622827269bc1c101f8096bd53}\label{app__config_8h_a1a9de8c622827269bc1c101f8096bd53} 
+\index{app\_config.h@{app\_config.h}!MAX\_WINDOW\_NAME\_LENGTH@{MAX\_WINDOW\_NAME\_LENGTH}}
+\index{MAX\_WINDOW\_NAME\_LENGTH@{MAX\_WINDOW\_NAME\_LENGTH}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_WINDOW\_NAME\_LENGTH}{MAX\_WINDOW\_NAME\_LENGTH}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+WINDOW\+\_\+\+NAME\+\_\+\+LENGTH~256}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{app__config_8h_aa019242a3126f47d77df61cb5d82638a}\label{app__config_8h_aa019242a3126f47d77df61cb5d82638a} 
+\index{app\_config.h@{app\_config.h}!ApplicationConfig@{ApplicationConfig}}
+\index{ApplicationConfig@{ApplicationConfig}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{ApplicationConfig}{ApplicationConfig}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structApplicationConfig}{Application\+Config}} \mbox{\hyperlink{structApplicationConfig}{Application\+Config}}}
+
+\Hypertarget{app__config_8h_ac5dd0e56809b21a4edcabb0003955c3b}\label{app__config_8h_ac5dd0e56809b21a4edcabb0003955c3b} 
+\index{app\_config.h@{app\_config.h}!Aspect@{Aspect}}
+\index{Aspect@{Aspect}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{Aspect}{Aspect}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structAspect}{Aspect}} \mbox{\hyperlink{structAspect}{Aspect}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{app__config_8h_aac4d8359ba042ef8043c2a0a1dfd2613}\label{app__config_8h_aac4d8359ba042ef8043c2a0a1dfd2613} 
+\index{app\_config.h@{app\_config.h}!appconfig\_get@{appconfig\_get}}
+\index{appconfig\_get@{appconfig\_get}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_get()}{appconfig\_get()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structApplicationConfig}{Application\+Config}} \texorpdfstring{$\ast$}{*} appconfig\+\_\+get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get functions return Pointers to memory addresses that don\textquotesingle{}t change! \Hypertarget{app__config_8h_ac9b7558807c1b01764f2034c64ecf746}\label{app__config_8h_ac9b7558807c1b01764f2034c64ecf746} 
+\index{app\_config.h@{app\_config.h}!appconfig\_get\_fps@{appconfig\_get\_fps}}
+\index{appconfig\_get\_fps@{appconfig\_get\_fps}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_get\_fps()}{appconfig\_get\_fps()}}
+{\footnotesize\ttfamily float \texorpdfstring{$\ast$}{*} appconfig\+\_\+get\+\_\+fps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{app__config_8h_acc990bf2b60648541028f5cc6f26bd9a}\label{app__config_8h_acc990bf2b60648541028f5cc6f26bd9a} 
+\index{app\_config.h@{app\_config.h}!appconfig\_get\_name@{appconfig\_get\_name}}
+\index{appconfig\_get\_name@{appconfig\_get\_name}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_get\_name()}{appconfig\_get\_name()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} appconfig\+\_\+get\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{app__config_8h_ab30a39292702ee3f24963ed25f1d35a5}\label{app__config_8h_ab30a39292702ee3f24963ed25f1d35a5} 
+\index{app\_config.h@{app\_config.h}!appconfig\_get\_resolution@{appconfig\_get\_resolution}}
+\index{appconfig\_get\_resolution@{appconfig\_get\_resolution}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_get\_resolution()}{appconfig\_get\_resolution()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structAspect}{Aspect}} \texorpdfstring{$\ast$}{*} appconfig\+\_\+get\+\_\+resolution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{app__config_8h_a8b5f1de0608258b3d466a20368acff78}\label{app__config_8h_a8b5f1de0608258b3d466a20368acff78} 
+\index{app\_config.h@{app\_config.h}!appconfig\_get\_window\_size@{appconfig\_get\_window\_size}}
+\index{appconfig\_get\_window\_size@{appconfig\_get\_window\_size}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_get\_window\_size()}{appconfig\_get\_window\_size()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structAspect}{Aspect}} \texorpdfstring{$\ast$}{*} appconfig\+\_\+get\+\_\+window\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{app__config_8h_a6a6540922c8c73b462050c80aeaf6d8e}\label{app__config_8h_a6a6540922c8c73b462050c80aeaf6d8e} 
+\index{app\_config.h@{app\_config.h}!appconfig\_init@{appconfig\_init}}
+\index{appconfig\_init@{appconfig\_init}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_init()}{appconfig\_init()}}
+{\footnotesize\ttfamily void appconfig\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structApplicationConfig}{Application\+Config}} \texorpdfstring{$\ast$}{*}}]{config }\end{DoxyParamCaption})}
+
+
+
+Call this in Main. Overwrites the default Configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\Hypertarget{app__config_8h_a94b177bd28a473bf4c75d00489187ed7}\label{app__config_8h_a94b177bd28a473bf4c75d00489187ed7} 
+\index{app\_config.h@{app\_config.h}!appconfig\_platform\_resized\_window@{appconfig\_platform\_resized\_window}}
+\index{appconfig\_platform\_resized\_window@{appconfig\_platform\_resized\_window}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_platform\_resized\_window()}{appconfig\_platform\_resized\_window()}}
+{\footnotesize\ttfamily void appconfig\+\_\+platform\+\_\+resized\+\_\+window (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structAspect}{Aspect}}}]{aspect }\end{DoxyParamCaption})}
+
+These functions are called by OS\textquotesingle{}. Do not call them yourself, unless you know what you\textquotesingle{}re doing. \Hypertarget{app__config_8h_ac72993399d825c8af1e49e673c461329}\label{app__config_8h_ac72993399d825c8af1e49e673c461329} 
+\index{app\_config.h@{app\_config.h}!appconfig\_platform\_resized\_window\_px@{appconfig\_platform\_resized\_window\_px}}
+\index{appconfig\_platform\_resized\_window\_px@{appconfig\_platform\_resized\_window\_px}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_platform\_resized\_window\_px()}{appconfig\_platform\_resized\_window\_px()}}
+{\footnotesize\ttfamily void appconfig\+\_\+platform\+\_\+resized\+\_\+window\+\_\+px (\begin{DoxyParamCaption}\item[{int}]{px\+Width,  }\item[{int}]{px\+Height }\end{DoxyParamCaption})}
+
+\Hypertarget{app__config_8h_ae1cfeffd2fed0d3dd14ccf1662f756d2}\label{app__config_8h_ae1cfeffd2fed0d3dd14ccf1662f756d2} 
+\index{app\_config.h@{app\_config.h}!appconfig\_set@{appconfig\_set}}
+\index{appconfig\_set@{appconfig\_set}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_set()}{appconfig\_set()}}
+{\footnotesize\ttfamily void appconfig\+\_\+set (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structApplicationConfig}{Application\+Config}} \texorpdfstring{$\ast$}{*}}]{config }\end{DoxyParamCaption})}
+
+These functions are for you to set the Application Config\textquotesingle{}s data. They will update on the platform side. \Hypertarget{app__config_8h_a7e4729b8012c52e167c3f9c6e448091c}\label{app__config_8h_a7e4729b8012c52e167c3f9c6e448091c} 
+\index{app\_config.h@{app\_config.h}!appconfig\_set\_name@{appconfig\_set\_name}}
+\index{appconfig\_set\_name@{appconfig\_set\_name}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_set\_name()}{appconfig\_set\_name()}}
+{\footnotesize\ttfamily void appconfig\+\_\+set\+\_\+name (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})}
+
+\Hypertarget{app__config_8h_aa32966ef5e34c432ff055bddb0c6fb5f}\label{app__config_8h_aa32966ef5e34c432ff055bddb0c6fb5f} 
+\index{app\_config.h@{app\_config.h}!appconfig\_set\_resolution@{appconfig\_set\_resolution}}
+\index{appconfig\_set\_resolution@{appconfig\_set\_resolution}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_set\_resolution()}{appconfig\_set\_resolution()}}
+{\footnotesize\ttfamily void appconfig\+\_\+set\+\_\+resolution (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structAspect}{Aspect}}}]{aspect }\end{DoxyParamCaption})}
+
+\Hypertarget{app__config_8h_a87280061e998a36395d542c1bbc12354}\label{app__config_8h_a87280061e998a36395d542c1bbc12354} 
+\index{app\_config.h@{app\_config.h}!appconfig\_set\_resolution\_px@{appconfig\_set\_resolution\_px}}
+\index{appconfig\_set\_resolution\_px@{appconfig\_set\_resolution\_px}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_set\_resolution\_px()}{appconfig\_set\_resolution\_px()}}
+{\footnotesize\ttfamily void appconfig\+\_\+set\+\_\+resolution\+\_\+px (\begin{DoxyParamCaption}\item[{int}]{px\+Width,  }\item[{int}]{px\+Height }\end{DoxyParamCaption})}
+
+\Hypertarget{app__config_8h_ad24b84f76148a62ce0acca8b80fc58d6}\label{app__config_8h_ad24b84f76148a62ce0acca8b80fc58d6} 
+\index{app\_config.h@{app\_config.h}!appconfig\_set\_window\_size@{appconfig\_set\_window\_size}}
+\index{appconfig\_set\_window\_size@{appconfig\_set\_window\_size}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_set\_window\_size()}{appconfig\_set\_window\_size()}}
+{\footnotesize\ttfamily void appconfig\+\_\+set\+\_\+window\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structAspect}{Aspect}}}]{aspect }\end{DoxyParamCaption})}
+
+\Hypertarget{app__config_8h_a25908f2612e13fde45d94b74425d6c78}\label{app__config_8h_a25908f2612e13fde45d94b74425d6c78} 
+\index{app\_config.h@{app\_config.h}!appconfig\_set\_window\_size\_px@{appconfig\_set\_window\_size\_px}}
+\index{appconfig\_set\_window\_size\_px@{appconfig\_set\_window\_size\_px}!app\_config.h@{app\_config.h}}
+\doxysubsubsection{\texorpdfstring{appconfig\_set\_window\_size\_px()}{appconfig\_set\_window\_size\_px()}}
+{\footnotesize\ttfamily void appconfig\+\_\+set\+\_\+window\+\_\+size\+\_\+px (\begin{DoxyParamCaption}\item[{int}]{px\+Width,  }\item[{int}]{px\+Height }\end{DoxyParamCaption})}
+

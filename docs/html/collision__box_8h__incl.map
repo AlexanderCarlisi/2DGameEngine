@@ -1,0 +1,20 @@
+<map id="include/collision_box.h" name="include/collision_box.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="90,5,261,31"/>
+<area shape="rect" id="Node000002" href="$shape_8h.html" title=" " alt="" coords="139,79,212,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,31,178,65,173,65,173,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="166,33,63,144,59,140,162,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="242,225,325,251"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="200,29,232,48,269,75,304,109,331,151,334,169,330,187,309,217,305,214,325,185,329,169,326,153,300,113,265,79,229,52,197,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="155,106,76,148,74,143,152,102"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="186,103,269,213,264,216,182,106"/>
+<area shape="rect" id="Node000005" href="$pose_8h.html" title=" " alt="" coords="251,152,316,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="194,102,256,142,253,147,191,106"/>
+<area shape="rect" id="Node000006" href="$vector_8h.html" title=" " alt="" coords="101,152,175,177"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="172,106,153,141,148,139,167,103"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="286,178,286,212,281,212,281,178"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="32,225,103,251"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="128,180,90,218,86,214,124,176"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="127,225,194,251"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="144,177,155,211,150,213,139,178"/>
+</map>
