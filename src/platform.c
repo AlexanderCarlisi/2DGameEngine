@@ -89,20 +89,20 @@ void platform_name_window(const char* name) {
 
 
 #else
-// ToDo: Unix
+// TODO: Unix
 
 #include <xcb/xcb.h>
 
 
 void platform_start() {
-	xcb_connection_t* connection = xcb_connection(NULL, NULL);
+	xcb_connection_t* connection = xcb_connect(NULL, NULL);
 	if (xcb_connection_has_error(connection)) {
 		printf("Failed to connect to X Server\n");
 		return;
 	}
 
 	const xcb_setup_t* setup = xcb_get_setup(connection);
-	xcb_screen_interator_t iter = xcb_setup_roots_iterator(setup);
+	xcb_screen_iterator_t iter = xcb_setup_roots_iterator(setup);
 	xcb_screen_t* screen = iter.data;
 
     xcb_window_t window = xcb_generate_id(connection);
@@ -122,7 +122,7 @@ void platform_start() {
     xcb_change_property(
         connection, XCB_PROP_MODE_REPLACE, window,
         XCB_ATOM_WM_NAME, XCB_ATOM_STRING, 8,
-        strlen("Hello XCB"), "Hello XCB"
+        1, ""
     );
 
     xcb_map_window(connection, window);
@@ -143,5 +143,12 @@ void platform_start() {
     // }
 }
 
+void platform_resize_window(struct Aspect *windowSize) {
+  
+}
+
+void platform_name_window(const char *name) {
+
+}
 
 #endif

@@ -1,0 +1,210 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/app_config.o",
+      "src/app_config.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/app_config.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/app_config.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/collision_box.o",
+      "src/collision_box.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/collision_box.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/collision_box.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/color.o",
+      "src/color.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/color.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/color.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/engine.o",
+      "src/engine.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/engine.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/engine.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/game_object.o",
+      "src/game_object.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/game_object.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/game_object.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/main.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/platform.o",
+      "src/platform.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/platform.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/platform.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/pose.o",
+      "src/pose.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/pose.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/pose.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/shape.o",
+      "src/shape.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/shape.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/shape.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/time.o",
+      "src/time.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/time.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/time.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/windows_renderer.o",
+      "src/windows_renderer.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/windows_renderer.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/windows_renderer.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/world.o",
+      "src/world.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/world.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/world.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iinclude",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-c",
+      "-o",
+      "src/world_config.o",
+      "src/world_config.c"
+    ],
+    "directory": "/home/bluk/code/2dge/2DGameEngine",
+    "file": "/home/bluk/code/2dge/2DGameEngine/src/world_config.c",
+    "output": "/home/bluk/code/2dge/2DGameEngine/src/world_config.o"
+  }
+]

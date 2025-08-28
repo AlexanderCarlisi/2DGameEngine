@@ -8,7 +8,7 @@ TARGET  := 2DGameEngine
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S), Linux)
-    LIBS := $(shell pkg-config --libs xcb xcb-util xcb-keysyms)
+    LIBS := $(shell pkg-config --libs xcb xcb-util xcb-keysyms) -lm
     CFLAGS += $(shell pkg-config --cflags xcb xcb-util xcb-keysyms)
 endif
 

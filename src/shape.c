@@ -1,9 +1,7 @@
 #include "shape.h"
-#include "pose.h"
 #include <math.h>
-#include "stdbool.h"
+#include <stdbool.h>
 #include <stdlib.h>
-#include "world.h"
 
 DEFINE_VECTOR(VertexVector, vector_vertex, struct Vertex)
 DEFINE_VECTOR(PoseVector, vector_pose, struct Pose)

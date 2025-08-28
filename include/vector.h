@@ -20,7 +20,7 @@
     bool func_prefix##_add(vector_name* arr, type item);\
     bool func_prefix##_realloc(vector_name* arr);\
     bool func_prefix##_realloc_set(vector_name* arr, size_t newSize);\
-    bool func_prefix##_pop_swap(vector_name* arr, int index);\
+    bool func_prefix##_pop_swap(vector_name* arr, size_t index);\
 
 
 #define DEFINE_VECTOR(vector_name, func_prefix, type)\
@@ -75,14 +75,13 @@
         return true;\
     }\
 \
-    bool func_prefix##_pop_swap(vector_name* arr, int index) {\
-        if (index < 0 || index >= arr->count) {\
+    bool func_prefix##_pop_swap(vector_name* arr, size_t index) {\
+        if (index >= arr->count) {\
             printf("\n>>> Pop-Swap Failure <<<\n...Index out of Bounds...");\
             return false;\
         }\
 \
-        type pop = arr->data[index];\
-        int lastIndex = arr->count - 1;\
+        size_t lastIndex = arr->count - 1;\
         type swap = arr->data[lastIndex];\
 \
         if (index != lastIndex) {\
@@ -93,7 +92,7 @@
     }\
 
 
-
+/*
 // #define DECLARE_VECTOR_PTR(vector_name, func_prefix, type_ptr)\
 //     typedef struct vector_name {\
 //         type_ptr* data;\
@@ -179,5 +178,5 @@
 //         arr->count--;\
 //         return popped;
 //     }\
-
+*/
 #endif // VECTOR_H
