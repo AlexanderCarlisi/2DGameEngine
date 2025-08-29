@@ -9,6 +9,8 @@
 // TODO: Cleanup GameObject formatting
 // TODO: Refactor World handling of GameObjects and Pool
 // TODO: Refactor size variables with size_t
+// TODO: UNIX impl
+// TODO: CLEANUP, go through everything, lots of refactors, theres gonna be tons of uglyness
 //
 // TODO: Refactor Renderer to not be like a 'object' (maybe)
 
