@@ -20,6 +20,7 @@ typedef struct Renderer {
     void (*set_aspects)(struct Renderer* self);
 
     uint32_t* framebuffer;
+    // TODO: remove this shit
     int* win_width;
     int* win_height; 
     int* res_width;

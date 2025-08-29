@@ -2,7 +2,6 @@
 #include "engine.h"
 #include "app_config.h"
 #include <stdio.h>
-#include <xcb/xproto.h>
 #include "time.h"
 
 
@@ -90,8 +89,9 @@ void platform_name_window(const char* name) {
 
 
 #else
-// TODO: Unix
+// TODO: Linux
 
+#include <xcb/xproto.h>
 #include <xcb/xcb.h>
 #include <stdlib.h>
 #include <string.h>
@@ -174,7 +174,7 @@ void platform_start() {
     xcb_flush(connection);
 
     // Initialize renderer and engine
-    // engine_start(create_unix_renderer(connection, &window));
+    engine_start(create_linux_renderer(connection, &window));
 
     // Event / Engine loop
     while (engine_is_running()) {
