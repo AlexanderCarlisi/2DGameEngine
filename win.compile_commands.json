@@ -1,0 +1,80 @@
+[
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\app_config.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\app_config.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/app_config.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/app_config.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\collision_box.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\collision_box.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/collision_box.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/collision_box.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\color.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\color.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/color.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/color.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\engine.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\engine.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/engine.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/engine.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\game_object.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\game_object.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/game_object.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/game_object.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\main.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\main.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/main.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/main.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\platform.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\platform.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/platform.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/platform.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\pose.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\pose.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/pose.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/pose.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\shape.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\shape.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/shape.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/shape.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\time.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\time.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/time.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/time.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\windows_renderer.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\windows_renderer.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/windows_renderer.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/windows_renderer.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\world.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\world.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/world.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/world.c.obj"
+},
+{
+  "directory": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\cc.exe -IC:/Users/alexh/Desktop/Code/C/2DGameEngine/include -std=gnu11 -Wall -Wextra -O2 -o CMakeFiles\\2DGameEngine.dir\\src\\world_config.c.obj -c C:\\Users\\alexh\\Desktop\\Code\\C\\2DGameEngine\\src\\world_config.c",
+  "file": "C:/Users/alexh/Desktop/Code/C/2DGameEngine/src/world_config.c",
+  "output": "C:/Users/alexh/Desktop/code/c/2DGameEngine/build/CMakeFiles/2DGameEngine.dir/src/world_config.c.obj"
+}
+]
