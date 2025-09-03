@@ -13,6 +13,8 @@
 // TODO: CLEANUP, go through everything, lots of refactors, theres gonna be tons of uglyness
 //
 // TODO: Refactor Renderer to not be like a 'object' (maybe)
+// TODO: This will probably never happen. but refactor the entire project to allow Multi-Windowness
+//          Requires a rewrite of appconfig, the renderers, engine, and platform
 
 // CURRENT:
 //  = Collision Boxes

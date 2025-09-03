@@ -90,58 +90,60 @@ void platform_name_window(const char* name) {
 
 #else
 // TODO: Linux
-
-#include <xcb/xproto.h>
-#include <xcb/xcb.h>
 #include <stdlib.h>
 #include <string.h>
 
-static xcb_connection_t* connection = NULL;
-static xcb_window_t window;
+struct X11Window x11_window;
 
 void platform_start() {
     struct ApplicationConfig* config = appconfig_get();
 
     // Connect to the X server
-    connection = xcb_connect(NULL, NULL);
-    if (xcb_connection_has_error(connection)) {
+    int screenNum;
+    x11_window.connection = xcb_connect(NULL, &screenNum);
+    if (xcb_connection_has_error(x11_window.connection)) {
         printf("Failed to connect to X Server\n");
         return;
     }
 
-    const xcb_setup_t* setup = xcb_get_setup(connection);
-    xcb_screen_iterator_t iter = xcb_setup_roots_iterator(setup);
-    xcb_screen_t* screen = iter.data;
+    const xcb_setup_t* setup = xcb_get_setup(x11_window.connection);
 
-    window = xcb_generate_id(connection);
+    // Get the desired screen
+    xcb_screen_iterator_t iter = xcb_setup_roots_iterator(setup);
+    for (int i = 0; i < screenNum; i++) {
+        xcb_screen_next(&iter);
+    }
+    x11_window.screen = iter.data;
+
+    x11_window.window = xcb_generate_id(x11_window.connection);
 
     uint32_t mask = XCB_CW_BACK_PIXEL | XCB_CW_EVENT_MASK;
     uint32_t values[2] = {
-        screen->black_pixel,
+        x11_window.screen->black_pixel,
         XCB_EVENT_MASK_EXPOSURE |
         XCB_EVENT_MASK_KEY_PRESS |
         XCB_EVENT_MASK_STRUCTURE_NOTIFY // for resize
     };
 
     xcb_create_window(
-        connection,
+        x11_window.connection,
         XCB_COPY_FROM_PARENT,
-        window,
-        screen->root,
+        x11_window.window,
+        x11_window.screen->root,
         100, 100,
         config->window_aspect.width,
         config->window_aspect.height,
         0,
         XCB_WINDOW_CLASS_INPUT_OUTPUT,
-        screen->root_visual,
+        x11_window.screen->root_visual,
         mask, values
     );
 
     // Set the window name, dont use platform_name_window, since it flushes
     xcb_change_property(
-        connection,
+        x11_window.connection,
         XCB_PROP_MODE_REPLACE,
-        window,
+        x11_window.window,
         XCB_ATOM_WM_NAME,
         XCB_ATOM_STRING,
         8,
@@ -149,37 +151,37 @@ void platform_start() {
         config->window_name
     );
 
-    xcb_map_window(connection, window);
+    xcb_map_window(x11_window.connection, x11_window.window);
     
     // Setup listener for WM_DELETE_WINDOW
     // TODO: Theres got to be a more optimal way to do this part
-    xcb_intern_atom_cookie_t cookie = xcb_intern_atom(connection, 0, strlen("WM_PROTOCOLS"), "WM_PROTOCOLS");
-    xcb_intern_atom_reply_t* reply = xcb_intern_atom_reply(connection, cookie, NULL); // THIS FLUSHES ALL PREV REQUESTS
+    xcb_intern_atom_cookie_t cookie = xcb_intern_atom(x11_window.connection, 0, strlen("WM_PROTOCOLS"), "WM_PROTOCOLS");
+    xcb_intern_atom_reply_t* reply = xcb_intern_atom_reply(x11_window.connection, cookie, NULL); // THIS FLUSHES ALL PREV REQUESTS
     xcb_atom_t wm_protocols = reply->atom;
     free(reply);
-    cookie = xcb_intern_atom(connection, 0, strlen("WM_DELETE_WINDOW"), "WM_DELETE_WINDOW");
-    reply = xcb_intern_atom_reply(connection, cookie, NULL);
+    cookie = xcb_intern_atom(x11_window.connection, 0, strlen("WM_DELETE_WINDOW"), "WM_DELETE_WINDOW");
+    reply = xcb_intern_atom_reply(x11_window.connection, cookie, NULL);
     xcb_atom_t wm_delete_window = reply->atom;
     free(reply);
     
     // Now an atom will be sent instead of the App dying when user hits X
     xcb_change_property(
-        connection,
+        x11_window.connection,
         XCB_PROP_MODE_REPLACE,
-        window,
+        x11_window.window,
         wm_protocols,
         4, 32, 1, &wm_delete_window
     );
 
-    xcb_flush(connection);
+    xcb_flush(x11_window.connection);
 
     // Initialize renderer and engine
-    engine_start(create_linux_renderer(connection, &window));
+    // engine_start(create_linux_renderer(connection, &window));
 
     // Event / Engine loop
     while (engine_is_running()) {
         xcb_generic_event_t *event;
-        while ((event = xcb_poll_for_event(connection))) {
+        while ((event = xcb_poll_for_event(x11_window.connection))) {
             switch (event->response_type & ~0x80) {
                 case XCB_EXPOSE:
                     // Could trigger a redraw
@@ -212,31 +214,35 @@ void platform_start() {
 
 end:
     engine_close();
-    xcb_disconnect(connection);
+    xcb_disconnect(x11_window.connection);
 }
 
 void platform_resize_window(struct Aspect *windowSize) {
-    if (!connection) return;
+    if (!x11_window.connection) return;
 
     xcb_configure_window(
-        connection,
-        window,
+        x11_window.connection,
+        x11_window.window,
         XCB_CONFIG_WINDOW_WIDTH | XCB_CONFIG_WINDOW_HEIGHT,
         (uint32_t[]){windowSize->width, windowSize->height}
     );
-    xcb_flush(connection);
+    xcb_flush(x11_window.connection);
 }
 
 void platform_name_window(const char *name) {
-    if (!connection) return;
+    if (!x11_window.connection) return;
 
     xcb_change_property(
-        connection,
+        x11_window.connection,
         XCB_PROP_MODE_REPLACE,
-        window,
+        x11_window.window,
         XCB_ATOM_WM_NAME, XCB_ATOM_STRING,
         8, strlen(name), name);
-    xcb_flush(connection);
+    xcb_flush(x11_window.connection);
+}
+
+struct X11Window* platform_get_x11_window() {
+    return &x11_window;
 }
 
 #endif
