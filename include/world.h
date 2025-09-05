@@ -1,12 +1,60 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include "world_config.h"
 #include "game_object.h"
 
+#define WORLD_OBJECT_BUFFER_SIZE 255
 DECLARE_VECTOR(GameObjectVector, vector_game_object, struct GameObject);
 
+
 /**
+ * @struct Interval
+ * @brief An inclusive interval, generally used for Buffers and Pools.
+ * Layout: [size_t, size_t]
+ * Size: 16, 8
+*/
+typedef struct Interval {
+	size_t start;
+	size_t end;
+} Interval;
+
+
+/**
+ * @struct WorldConfig
+ * @brief Settings and Information on a World and it's data.
+ * 
+ * @var WorldConfig::buffer_interval
+ * Interval of Active Game Objects on the Buffer. Objects outside of this Interval are not considered for Physics Updates, or Rendering.
+ * 
+ * @var WorldConfig::pool_interval
+ * Interval of Active Game Objects on the Pool. Objects outside of this Interval are not considered for Physics Updates, or Rendering.
+ *
+ * @var WorldConfig::pool_size
+ * Starting size of the WorldHandler's Pool when this Config is Loaded. Will not realloc unless necessary.
+ * @note this value does not update to changes in the WorldHandler. @see world_handler_get_pool_size
+ *
+ * @var WorldConfig::reallocation_ratio
+ * Ratio to use when automatically reallocating the Object Pool. This is only used when attempting to overflow the Pool.
+ *
+ * @var WorldConfig::pixels_per_meter
+ * Pixels / Meter conversion, this is used in Pose math. @see struct Pose
+ * TODO: Contemplate this some more, this being a float doesn't really make sense 10.5 / 1 is a weird fraction, and there is no half pixel.
+ *
+ * @var WorldConfig::gravity_field
+ * The applied Gravity on Dynamic GameObjects. In units of Newtons/Kg || Meters per Second/Second
+*/
+typedef struct WorldConfig {
+	struct Interval buffer_interval;
+	struct Interval pool_interval;
+	size_t pool_size;
+  float reallocation_ratio;
+	float pixels_per_meter;
+  float gravity_field;
+} WorldConfig;
+
+
+/**
+ * TODO: Update Doxys for this whole damn file
  * @struct World
  * @brief Container for a 'World', holds functions and a WorldConfig used by
  * the world.
@@ -46,71 +94,41 @@ DECLARE_VECTOR(GameObjectVector, vector_game_object, struct GameObject);
  *
 */
 typedef struct World {
-	struct WorldConfig* config;
+	struct WorldConfig config;
+	struct GameObject object_buffer[WORLD_OBJECT_BUFFER_SIZE];
+	struct GameObjectVector object_pool;
+	struct Interval interval_buffer;
+	struct Interval interval_pool;
 	void (*init)();
 	void (*start)();
 	void (*loop)();
 	void (*close)();
+	void (*dealloc)();
 } World;
+
 
 /// @brief Reallocate the Object Pool.
 /// @param newSize
 /// @return Success of Reallocation.
 /// @warning
-bool world_realloc_pool(size_t newSize);
+bool world_realloc_pool(struct World* world, size_t newSize);
 
 /// @brief Nullifies Objects within the Interval of the Object Buffer.
 /// @param interval
 /// @return Success of the operation.
-bool world_remove_from_buffer(struct Interval* interval);
+bool world_remove_from_buffer(struct World* world, struct Interval* interval);
 
 /// @brief Nullifies Objects within the Interval of the Object Pool.
 /// @param interval
 /// @return Success of the operation.
-bool world_remove_from_pool(struct Interval* interval);
-
-/// @brief Get the Interval of Active Game Objects on the Buffer.
-struct Interval* world_get_buffer_interval();
-
-/// @brief Get the Interval of Active Game Objects on the Pool.
-struct Interval* world_get_pool_interval();
-
-/// @brief Set the Interval of Active Game Objects on the Buffer.
-/// @param interval
-/// @return Validity of operation.
-/// @warning Will not stop you from making NULL GameObjects active.
-bool world_set_buffer_interval(struct Interval* interval);
-
-/// @brief Set the Interval of Active Game Objects on the Pool.
-/// @param interval
-/// @return Validity of operation.
-/// @warning Will not stop you from making NULL GameObjects active.
-bool world_set_pool_interval(struct Interval* interval);
-
-/// @brief Initialize the world with a new World.
-/// @param world World to set as Active, loads the worldconfig, and setups necessary changes.
-void world_load(struct World* world);
+bool world_remove_from_pool(struct World* world, struct Interval* interval);
 
 /// @brief Returns the Pointer to the GameObject on the Buffer at that Index.
 /// @param index on buffer.
-struct GameObject* world_buffer_get_object(size_t index);
+struct GameObject* world_buffer_get_object(struct World* world, size_t index);
 
 /// @brief Returns the Pointer to the GameObject on the Pool at that Index.
 /// @param index in pool.
-struct GameObject* world_pool_get_object(size_t index);
-
-/// @brief Set the Deallocation function for World Resources.
-/// Users of the Engine should use this function to deallocate any memory
-/// from their project. This function will be called by the Engine when the app
-/// closes.
-/// @param free_func Function Ptr.
-void world_set_free_function(void (*free_func)());
-
-/// @brief Using the Deallocation function provided, this will release the
-/// resources of the worlds.
-/// @see world_set_free_function
-/// @note this Function will deallocate the Object Pool, all you need to
-/// think about is deallocating your own code's resources.
-void world_free();
+struct GameObject* world_pool_get_object(struct World* world, size_t index);
 
 #endif // WORLD_H

@@ -76,16 +76,14 @@ void linux_renderer_release_resources(struct Renderer* self) {
 
 void linux_renderer_set_aspects(struct Renderer* self) {
     LinuxRenderer* renderer = (LinuxRenderer*) self;
+    struct Aspect* res = appconfig_get_resolution();
 
     if (renderer->framebuffer) {
         free(renderer->framebuffer);
         renderer->framebuffer = NULL;
     }
-
-    renderer->framebuffer = (uint32_t*) calloc(self->res_width * self->res_height, sizeof(uint32_t));
-    renderer->width = self->res_width;
-    renderer->height = self->res_height;
-
+    
+    renderer->framebuffer = (uint32_t*) calloc(res->width * res->height, sizeof(uint32_t));
     // TODO: create XCB pixmap and GC if needed
 }
 

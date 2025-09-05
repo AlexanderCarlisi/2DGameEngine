@@ -4,6 +4,12 @@
 #include <stdio.h>
 #include "time.h"
 
+// TODO:
+// Update so these Return WindowInfos
+// Main.c will just create a PlatformWindow, then call a MainLoop function.
+// This allows users of the engine to modify the setup of the engine easier,
+// making it robust, but keeping the core functionally simple so your average
+// user doesn't need to even think about it for their single window game.
 
 #ifdef _WIN32
 

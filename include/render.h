@@ -1,32 +1,16 @@
-// uint32_t represents Color: 4 Bytes (alpha, red, green, blue)
-
-#include <stdint.h>
-#include "game_object.h"
-
 #ifndef RENDER_H
 #define RENDER_H
 
-struct ApplicationConfig; // APP_CONFIG_H
+#include "platform.h"
 
-typedef struct Renderer {
-    void (*init)(struct Renderer* self);
-    void (*clear)(struct Renderer* self, uint32_t color);
-    void (*draw_pixel)(struct Renderer* self, int x, int y, uint32_t color);
-    void (*interpolate_pixel)(struct Renderer* self, int x0, int y0, int x1, int y1, uint32_t color, float alpha);
-    void (*draw_shape)(struct Renderer* self, int x, int y, uint32_t color, int vertices);
-    void (*draw)(struct Renderer* self, float alpha);
-    void (*display)(struct Renderer* self);
-    void (*release_resources)(struct Renderer* self);
-    void (*set_aspects)(struct Renderer* self);
-
-    uint32_t* framebuffer;
-    // TODO: remove this shit
-    int* win_width;
-    int* win_height; 
-    int* res_width;
-    int* res_height;
-} Renderer;
-
-
+void (*init)(struct WindowConfig* window);
+void (*clear)(struct WindowConfig* window, uint32_t color);
+void (*draw_pixel)(struct WindowConfig* window, uint16_t x, uint16_t y, uint32_t color);
+void (*interpolate_pixel)(struct WindowConfig* window, uint16_t x, uint16_t y, uint32_t color, float alpha);
+void (*draw_shape)(struct WindowConfig* window, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color, int vertices);
+void (*draw)(struct WindowConfig* window, float alpha);
+void (*display)(struct WindowConfig* window);
+void (*release_resources)(struct WindowConfig* window);
+void (*set_aspects)(struct WindowConfig* window);
 
 #endif

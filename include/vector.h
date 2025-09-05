@@ -1,7 +1,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include "stdlib.h"
 #include <stdbool.h>
 #include <stdio.h>
 
