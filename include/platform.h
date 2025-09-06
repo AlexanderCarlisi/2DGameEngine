@@ -1,23 +1,9 @@
-/// TODO:
-/// Higher level platform handler
-/// Most users will go through this to
-/// create new windows, and manage currently existing ones.
-/// will be the new communication point for the platform renderers.
-/// -
-/// platform_initalize. This will create the first window of the game, and init the dyn array of windows.
-/// platform_new_window, will append a new WindowInfo to the Dyn Arr, and Initialize it with provided args.
-/// platform_set_window_name, size_t window index, const char* name
-/// platform_set_window_size, size_t window index, struct Aspect* windowAspect
-/// platform_set_window_resolution, size_t window index, struct Aspect* resolutionAspect
-/// *Accessed by Engine
-/// platform_iterate, iterates through the platforms User input system
-/// platform_render, run the platform renderer
-
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "world.h"
 
 #define PLATFORM_MAX_WINDOW_NAME 256    // Should be max Window Name length for Windows and Unix, needs to be tested.
 
@@ -39,24 +25,49 @@ typedef struct WindowConfig {
     struct Aspect window_aspect;
     struct Aspect render_aspect;
     float frames_per_second;
+    struct World world;
 } WindowConfig;
 
 
+/// @brief Startup the platform.
+/// @return Success.
 bool platform_initialize();
 
-struct WindowConfig* platform_new_window(struct WindowConfig* windowConfig);
+/// @brief Handles the creation and initialization of a new Window for the respective platform.
+/// @return WindowConfig pointer. Can be type casted to the specific platform's Window struct.
+/// @see X11Window TODO
+struct WindowConfig* platform_new_window(struct WindowConfig* config);
 
-// After updating the config with your desired changes, call this to Refresh the renderer and whatnot
-struct WindowConfig* platform_update_window(struct WindowConfig* config);
+/// @brief Flushes all changes of the Window Config to the platform.
+/// @param config WindowConfig with changes you wish to see implemented.
+/// @return Success.
+bool platform_update_window(struct WindowConfig* config);
 
-// Updates the Config, and updates platform side 'flush'
+/// @brief Update the name of the Window, flushes change.
+/// @return Success.
+/// @see platform_new_window for changing multiple fields at once.
 bool platform_set_window_name(struct WindowConfig* config, const char* name);
+
+/// @brief Update the window size, flushes change.
+/// @return Success.
+/// @see platform_new_window for changing multiple fields at once.
 bool platform_set_window_size(struct WindowConfig* config, struct Aspect size);
+
+/// @brief Update the window resolution, flushes change.
+/// @return Success.
+/// @see platform_new_window for changing multiple fields at once.
 bool platform_set_window_resolution(struct WindowConfig* config, struct Aspect res);
 
-// bool for errors or somthin idk
-bool platform_iterate();
-bool platform_render();
+/// @brief Performs an iteration platform side.
+/// Checks for client side inputs and requests.
+/// @param config The window to perform checks on.
+/// @return False if an error occurs.
+bool platform_iterate(struct WindowConfig* config);
+
+/// @brief Renders the World assigned to the WindowConfig.
+/// @param config The WindowConfig to render.
+/// @return False if an error occurs.
+bool platform_render(struct WindowConfig* config);
 
 // TODO: WINDOWS
 #ifdef _WIN32
@@ -65,13 +76,18 @@ bool platform_render();
 #ifdef __linux__
 #include <xcb/xcb.h>
 
+/**
+ * @struct X11Window
+ * The container holding all information relevant to a single X11 Window.
+ * Used for Rendering, Inputs, ---- and whatever else gets added. TODO
+ */
 typedef struct X11Window {
     struct WindowConfig config;
     xcb_connection_t* connection;
     xcb_screen_t* screen;
     xcb_window_t window;
-    xcb_pixmap_t pixmap;      // Offscreen buffer
-    uint32_t* framebuffer;    // Pixel buffer for software rendering
+    xcb_pixmap_t pixmap;
+    uint32_t* framebuffer;
 } X11Window;
 
 #endif // __linux__
