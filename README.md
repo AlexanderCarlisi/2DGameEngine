@@ -11,3 +11,7 @@ Currently Implemented:
 Currently Developing:
 * Linux Renderer, and Application support using XDG for X11 systems
 * A big refactor of the World and Renderer system to allow for Multiple window instances with Worlds tied to each instance
+
+Planned Development:
+* After writing my own Renderers for Windows and Linux, once I'm satisfied with my workings, I will add OpenGL and/or Vulkan support.
+* Physics
